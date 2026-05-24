@@ -22,7 +22,7 @@ related:
 2. **Bluesky es ganancia rápida**. Follow + comment en 5-10 cuentas tech EU te da los primeros 30-50 followers en 1 semana sin esfuerzo.
 3. **Quora es maratón**. Cadencia 48h entre answers. Las 3 respuestas pendientes (2, 3, 4) ya programadas en `mcp__scheduled-tasks`.
 4. **X requiere comentar, no publicar**. Tu hilo del 24 may necesita comentarios en hilos relevantes de otros para subir visibilidad de tu cuenta.
-5. **LinkedIn ya es tu canal fuerte**. No cambiar lo que funciona. Mantener cadencia 1-2 posts/semana con voz Carlos Ortet documentada.
+5. **LinkedIn no es "mantener", es active growth**. De 5K a 10K followers con Newsletter nativa (no existe) + 1 carousel/mes + 5 recommendations nuevas + Featured refresh trimestral + SSI tracking. Ver guía deep dive en skill.
 
 ---
 
@@ -34,7 +34,7 @@ related:
 | **Bluesky** | ~0 followers | Cuenta nueva (24 may) | Feed vacío, sin red | 🟠 2 |
 | **Quora** | 19 followers · 1 answer en producción | Recién activada con first answer | Sin authority en topic | 🟡 3 |
 | **X / Twitter** | (sin métricas hoy) | Cuenta inactiva durante meses | Sin engagement reciente | 🟡 3 |
-| **LinkedIn** | 5K+ followers, activo | Canal fuerte, voz validada | Ninguno | 🟢 4 (mantener) |
+| **LinkedIn** | 5K+ followers, activo | Canal fuerte, voz validada PERO Newsletter LinkedIn nativa no existe + Featured desactualizado + 0 carousels últimos 6 meses + SSI no medido | 🟠 2 **(active growth)** |
 | **Threads** | recién creada | 0 followers, hilo del 24 may live | Cross-graph Meta lento | 🟢 4 |
 | **Medium** | followers ya consolidados | Editorial fuerte (3+ posts virales) | Ninguno | 🟢 4 |
 | **Substack** | newsletter activa | Open rate >35% típico | Ninguno | 🟢 4 |
@@ -223,11 +223,67 @@ Aplicar `~/.claude/skills/content-factory/references/x-twitter-voice-style.md`:
 
 ---
 
-## 5. LinkedIn · Mantener (PRIORIDAD 4)
+## 5. LinkedIn · Active Growth (PRIORIDAD 2, elevada)
 
-Ya tienes voz validada y red establecida. Mantener cadencia 1-2 posts/semana siguiendo `~/.claude/skills/content-factory/references/linkedin-voice-carlos-ortet.md`.
+> Cambio de plan respecto V1: LinkedIn pasa de "mantener" a "active growth" porque tienes 4 oportunidades subutilizadas que pueden llevarte de 5K a 10K followers en 90 días.
 
-**No cambiar lo que funciona**.
+### 4 oportunidades concretas
+
+| Oportunidad | Estado actual | Acción | Esfuerzo |
+|---|---|---|---|
+| **LinkedIn Newsletter nativa** | No existe | Lanzar "GEO Brief Weekly" o similar. Repurpose contenido Substack adaptado (1.500-2.500 palabras vs 3.000-5.000) | 30 min/semana extra |
+| **Carousels (PDF docs)** | 0 últimos 6 meses | 1 carousel/mes con dato visual del proyecto del mes. Formato top engagement 2026 (5-8x reach vs texto) | 2h/mes |
+| **Recommendations** | Tu profile tiene N actuales, no actualizadas | Pedir 5 nuevas en 30 días a clientes/colegas/partners específicos con plantilla guiada | 1h total |
+| **Featured section** | Desactualizado | Refresh trimestral con top 3 piezas (pillar editorial + producto + talk) | 30 min/trimestre |
+
+### Profile audit pendiente
+
+Aplicar guía completa de `~/.claude/skills/content-factory/references/linkedin-optimization-deep-dive.md`:
+
+- [ ] **Headline reescrito** estructura "qué + para quién + outcome" (220 chars máx)
+- [ ] **About reescrito** 4 bloques (hook + what I do + diferencial + CTA explícito)
+- [ ] **Experience** con resultados medibles primero (no responsabilidades)
+- [ ] **Skills top 10** ordenadas + 3-5 assessments badges
+- [ ] **Banner custom** (no genérico)
+- [ ] **Photo profesional** updated last year
+- [ ] **Custom URL** clean
+
+### SSI tracking
+
+Mide tu Social Selling Index en `linkedin.com/sales/ssi` (gratis). Baseline target:
+- C-level B2B benchmark: 28 promedio · 70+ top 1%
+- **Target Carlos día 90**: 60+ (mejora típica +10/mes primeras 8 semanas)
+
+### Cadencia activa propuesta
+
+| Frecuencia | Acción |
+|---|---|
+| 2-3x semana | Post normal voz Carlos Ortet (cumple `linkedin-voice-carlos-ortet.md`) |
+| 1x mes | Carousel pillar (5-8x más reach) |
+| 1x cada 6 sem | LinkedIn Newsletter edition |
+| Daily | 5-10 comments en feeds de otros con valor |
+| Semanal | 1-2 DMs valiosos a connections clave |
+
+### KPI LinkedIn day 90 nuevos
+
+| Métrica | Baseline 24 may | Target día 90 | Cambio vs plan v1 |
+|---|---|---|---|
+| Followers | 5K+ | **6.5K+** | (v1: mantener) → active growth +30% |
+| SSI Score | no medido | **60+** | nuevo KPI |
+| LinkedIn Newsletter subs | 0 (no existe) | **200+** | nuevo asset |
+| Carousels publicados | 0 | **3-4** | nuevo formato |
+| Recommendations nuevas | 0 | **5** | nuevo trust signal |
+| Profile completeness | parcial | **100% all sections** | optimizado |
+
+### Por qué cambio de prioridad
+
+LinkedIn es donde:
+- Tu audiencia primaria B2B está
+- LLMs te citan más (Schema-rich, indexado)
+- Cliente potencial AB90 te descubre
+- Newsletter LinkedIn = canal owned con distribución algorítmica gratis (rare combo)
+
+Es el ROI más alto por hora invertida después de HN (que está bloqueado por dang).
 
 ---
 
@@ -309,7 +365,11 @@ Crea una nota Obsidian o un Google Sheet con:
 | Quora | answers en topic | 1 | 4 | 4 + comments |
 | Quora | followers | 19 | 30-40 | 60-80 |
 | X | impressions semanales | (baseline) | +500% | +1000% |
-| LinkedIn | engagement rate | (mantener) | igual | igual |
+| LinkedIn | followers | 5K+ | +200 | +1.5K (to 6.5K) |
+| LinkedIn | SSI Score | no medido | medido + plan mejora | 60+ |
+| LinkedIn | Newsletter subs | 0 | live + 50 subs | 200+ |
+| LinkedIn | Carousels publicados | 0 | 1 | 3-4 |
+| LinkedIn | Recommendations nuevas | 0 | 1-2 | 5 |
 
 ---
 

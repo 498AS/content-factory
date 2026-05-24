@@ -319,6 +319,18 @@ Blended para AB90 (~30% senior, 50% mid, 20% junior): **~€36/h** efectivo.
 - Reporte fin de mes (2h)
 - Upgrade path: 50% del Starter descontado si pasas a Personal en 30 días
 
+### Add-on "LinkedIn Deep Optimization" (recomendado para Personal/Empresa)
+
+LinkedIn es la capa más rentable para clientes B2B (audiencia primaria + LLM citations + SSI tracking medible). Por defecto AB90 cubre LinkedIn como parte de Capa 2 (earned media), pero para clientes que LinkedIn es su #1 canal añadimos add-on:
+
+| Add-on | Para quién | Incluye | Precio | Horas | Margen |
+|---|---|---|---|---|---|
+| **LinkedIn Deep Optimization** | Personal o Empresa que LinkedIn es su #1 canal | Profile audit completo (headline, About, Featured, Experience, Skills) + setup LinkedIn Newsletter + Company Page integration + Recommendations playbook (outreach a 10 personas) + 6 carousels diseñados + 1 mes coaching cadencia + SSI tracking + employee advocacy setup (Empresa) | **€2-3K** add-on | ~22h | ~70% |
+
+**Por qué add-on separado vs incluir en Personal**: profile reescrito + 6 carousels + Newsletter setup = trabajo intensivo de 22h adicionales que no aplica a todos. Cliente que ya tiene LinkedIn fuerte (caso Carlos) no lo necesita; cliente que está empezando o tiene profile abandonado sí.
+
+Documentación operativa: `~/.claude/skills/content-factory/references/linkedin-optimization-deep-dive.md`.
+
 ### Founder pricing primeros 3 clientes V1.5
 
 A cambio de testimonial público + uso del case study en marketing:
