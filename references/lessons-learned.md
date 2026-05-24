@@ -54,6 +54,47 @@
   3. **Asumir y mover**: title+URL siguen vivos, el OP comment se pierde.
 - **Prevención futura**: para cuentas con karma <50, primer comentario debe ser corto (<500 chars), conversacional, sin bullets ni cifras. Construir karma respondiendo en hilos ajenos durante 2-4 semanas antes de submission propia.
 - **Caso real 2026-05-24**: post `48256396` ("invisible fabric of AI") flagged. OP comment con 7 EU chip startups oculto a anónimos. Cuenta carlosortet, karma 1.
+
+#### 🚨 LECCIÓN CRÍTICA · HN clasificador GenAI (24 may 2026)
+
+**dang (HN admin) respondió personalmente al email**. Su clasificación NO fue por karma=1 sino por **"genai - which is not allowed"** según las guidelines: [news.ycombinator.com/newsguidelines.html#generated](https://news.ycombinator.com/newsguidelines.html#generated). Referencia oficial al precedente: [item?id=47340079](https://news.ycombinator.com/item?id=47340079).
+
+Cita literal del email de dang:
+> "It got classified by our software as genai, which is not allowed... Did you use an LLM to generate or edit the text you posted? This is getting submitters into all kinds of trouble on HN these days. The community can sense the altered quality of the language and treats it as a sign of lower quality. You'd be surprised at how strong this indicator is right now."
+
+**Implicaciones operativas**:
+
+1. **HN tiene un clasificador GenAI activo y eficaz** que detecta texto editado por LLM incluso cuando aplicamos reglas anti-LLM. NO es solo el filtro de spam estándar.
+2. **Las reglas anti-LLM superficiales** (orthography-rules.md § 3: sin em-dash, sin temporales, sin frases formulaicas) **NO son suficientes para HN**. El clasificador detecta cadencia estructural, no solo léxico.
+3. **Patrones que sospechamos detecta el clasificador**:
+   - Cadencia uniforme de párrafos (LLMs tienden a párrafos de longitud similar)
+   - Estructura "set-up → 7 bullets → wrap-up" típica de outputs LLM
+   - Densidad informacional alta y consistente (humanos varían más)
+   - Conectores formales en transiciones ("Additionally", "Furthermore", "Moreover")
+   - "Voice" coherente sin las irregularidades humanas (typos, idiom shifts, sentencias incompletas)
+4. **La penalización es invisible al autor logueado** (igual que el flag por low-karma), solo es visible al usuario anónimo cuando hace curl.
+
+**Política nueva para HN a partir del 24 may 2026**:
+
+| Situación | Acción |
+|---|---|
+| Contenido drafted por LLM | **NO publicar** en HN. Bluesky/Mastodon/Reddit más permisivos. |
+| Necesitas publicar en HN | Carlos debe **escribir 100% manual desde cero** (no editar output LLM). El skill puede ayudar con investigación/datos pero no con el texto. |
+| Ya publicado y flagged | (a) responder transparente a dang admitiendo asistencia LLM; (b) borrar tu comentario; (c) NO re-postear con versión "humanizada", ya está marcado el patrón. |
+| Quieres publicar HN regularmente | Construir karma manualmente durante 4-6 semanas con comments 100% propios antes de submit propio. Una vez tienes karma >100, el clasificador es menos agresivo pero sigue activo. |
+
+**Lo que NO sabíamos antes de hoy**:
+- Karma >50 NO desbloquea el clasificador GenAI (es independiente del filtro de spam)
+- Aplicar reglas anti-LLM superficiales NO es suficiente
+- El clasificador es lo suficientemente fuerte que dang lo cita en email personal
+- La detección funciona incluso sin watermarks SynthID (es análisis estilométrico)
+
+**Recomendación estratégica para Authority Boost service**:
+- HN sale del scope de "channels para los que LEO genera contenido"
+- HN entra en "channels que requieren cliente escriba 100% manual" (junto con respuestas Quora a comentarios, replies LinkedIn personalizadas, etc.)
+- Documentar este límite explícito al pitchear servicio AB90
+
+**Caso real 24 may 2026**: tras el flag de mañana, dang respondió personalmente al email. Honestidad total con dang es la única vía: admitir asistencia LLM + ofrecer borrar comentario + comprometerse a futuras submissions 100% manuales.
 - **Discord**: Respetar reglas del servidor. Consultar #rules. Enmarcar como contribucion, no promocion.
 
 ## Redes sociales

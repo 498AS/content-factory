@@ -4,6 +4,8 @@
 > Última actualización: 2026-05-24.
 >
 > ⚠️ **Antes de leer esto**: aplica también las reglas globales de `references/orthography-rules.md` § 3 (sin em-dash `—`, sin referencias temporales relativas tipo "esta semana", sin frases formulaicas tipo "También es, técnicamente, falsa" / "Lectura completa con datos verificados y fuentes"). Esas reglas son **globales a todos los canales**; aquí solo añadimos lo específico de X.
+>
+> 🚨 **Hacker News tiene un clasificador GenAI activo** que detecta texto editado por LLM incluso aplicando estas reglas. Ver `lessons-learned.md` § "HN clasificador GenAI". Política: para HN, contenido 100% manual del autor. Resto de plataformas con LLM-assist + reglas anti-LLM funciona razonablemente.
 
 ---
 

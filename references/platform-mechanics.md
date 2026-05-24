@@ -412,6 +412,16 @@ Si NO ves `commtext` para tu comentario en HTML anónimo, está flagged.
 
 → Ver `case-studies/karma-boost-carlos-ortet-20260524.md` § Hacker News (plan 10-15 min/día durante 2 semanas → karma 50+).
 
+### 🚨 REGLA NUEVA (24 may 2026): contenido HN debe ser 100% manual
+
+Tras email de dang el 24 may 2026 confirmando que nuestro OP comment fue clasificado como `genai` por software interno HN (independiente del filtro de spam, ver `lessons-learned.md`), política nueva:
+
+- **HN no acepta LLM-assisted content**, ni siquiera aplicando reglas anti-LLM superficiales
+- El clasificador detecta **cadencia estructural** (no solo léxico): párrafos de longitud uniforme, densidad informacional consistente, transiciones formales, ausencia de irregularidades humanas
+- **Política para HN**: el autor escribe 100% del comentario/submission desde cero. El skill content-factory puede ayudar con investigación (datos, fuentes, links) pero NO con drafting de texto
+- Aplica a comments, submissions y replies. Cualquier texto enviado a HN
+- Otros canales (Bluesky, Mastodon, Threads, LinkedIn, Substack) son más permisivos con LLM-assist si aplicas reglas anti-LLM
+
 ---
 
 ## Mastodon
