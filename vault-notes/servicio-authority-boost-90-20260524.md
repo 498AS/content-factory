@@ -270,16 +270,97 @@
 
 ---
 
-## 4. Pricing & estructura comercial (borrador interno)
+## 4. Pricing & estructura comercial (V2 · 24 may 2026)
 
-### Modelo de pricing sugerido
+> **V2 reprice** tras revisión de costes reales con equipo AI-native (Carlos 70K + Mer 50K + dev junior 30K) y mandato de margen mínimo 60% + competitividad.
+>
+> Stack AI propietario (GEORadar + DOC + S.A.M. + LEO) reduce horas internas ~45% vs estimación V1.
 
-| Tier | Para quién | Lo que incluye | Precio sugerido (interno) |
+### Costes internos reales (€/hora efectivo)
+
+| Rol | Salario | €/h bruto | +25% overhead | €/h efectivo |
+|---|---|---|---|---|
+| Junior dev / community | 30K | €17/h | — | **~€22/h** |
+| Mid (operaciones · Mer) | 50K | €29/h | — | **~€37/h** |
+| Senior (estrategia · Carlos) | 70K | €41/h | — | **~€52/h** |
+
+Blended para AB90 (~30% senior, 50% mid, 20% junior): **~€36/h** efectivo.
+
+### Horas internas reducidas por stack AI
+
+| Bloque | V1 | **V2 AI-native** | Por qué baja |
 |---|---|---|---|
-| **Authority Boost 90 · Personal** | C-level, founders, académicos individuales | Audit + GEORadar 2 mediciones + plan 90 días + cadencia auto-programada + dashboard + 6 sesiones quincenales | €8-15K (3 meses) |
-| **Authority Boost 90 · Empresa** | B2B SaaS, servicios profesionales | Lo anterior + claim Trustpilot/G2 + reseñas outreach + Schema.org enterprise + corporate LinkedIn page | €15-30K (3 meses) |
-| **Authority Boost Sostenido** | Continuación post-90 | Cadencia mensual + GEORadar trimestral + soporte estratégico | €2-4K/mes |
-| **Authority Boost Quick Audit** | Lead gen / sample | Audit + GEORadar baseline + roadmap (sin ejecución) | €2-3K (2 sem) |
+| Audit GEORadar + DOC | 15h | **7h** | 80% auto, 20% review humano |
+| Contenido cadenced (LEO) | 20h | **12h** | LEO produce, humano valida |
+| Sesiones humanas (kick + 6 quincenal + cierre) | 10h | **8h** | No automatizable |
+| Outreach press/podcasts | 10h | **6h** | Templates CRM + AI-assisted draft |
+| Tech setup (Schema, llms.txt, DOC) | 8h | **5h** | Plantilla reutilizable |
+| Reportes quincenales | 7h | **3h** | Template auto-rellenado |
+| Sales + kick-off | — | **3h** | (no contado V1) |
+| **Total Personal tier** | 80h | **44h** | -45% |
+
+### Pricing V2 · 5 tiers competitivos con margen >70%
+
+| Tier | Horas internas | Coste real | **Precio V2** | Margen € | Margen % |
+|---|---|---|---|---|---|
+| **Quick Audit** (2 sem) | 10h | €360 | **€1.2-1.8K** (€1.5K mid) | €1.14K | **76%** |
+| **Starter** ⭐ (1 mes solopreneur, nuevo) | 18h | €650 | **€1.8-2.8K** (€2.3K mid) | €1.65K | **72%** |
+| **Personal** (3 meses) | 44h | €1.6K | **€5-8K** (€6.5K mid) | €4.9K | **75%** |
+| **Empresa** (3 meses) | 80h | €2.9K | **€10-18K** (€14K mid) | €11.1K | **79%** |
+| **Sostenido** (post-90, mes-a-mes) | 8h/mes | €290/mes | **€1.5-3K/mes** (€2.25K mid) | €1.96K | **87%** |
+
+⭐ Tier **Starter** es nuevo en V2. Llena el gap entre Quick Audit (€1.5K sin ejecución) y Personal (€6.5K).
+
+**Starter (€1.8-2.8K · 1 mes · 18h incluye)**:
+- Quick Audit GEORadar baseline + DOC (5h)
+- Setup identity cross-platform + Schema.org Person (4h)
+- Cadencia operativa 1 plataforma a elegir (HN/Bluesky/Quora) (5h)
+- 2 sesiones de revisión 30 min (2h)
+- Reporte fin de mes (2h)
+- Upgrade path: 50% del Starter descontado si pasas a Personal en 30 días
+
+### Founder pricing primeros 3 clientes V1.5
+
+A cambio de testimonial público + uso del case study en marketing:
+
+| Tier | Precio normal | **Founder pricing primeros 3** | Margen aún |
+|---|---|---|---|
+| Personal | €6.5K | **€4.5K** | 64% ✓ |
+| Empresa | €14K | **€9K** | 67% ✓ |
+
+### Comparativa mercado V2
+
+```
+LinkedIn coach individual          €1.5-6K  (trimestre)  ←─ 1 capa
+[Starter AB90 nuevo]              €2-3K                  ←─ entrada accesible
+[Personal AB90]                   €6.5K                  ←─ sweet spot vs coachs
+[Empresa AB90]                    €14K                   ←─ premium accesible
+PR agency boutique 3m            €15-45K                 ←─ 2-3x más caro
+GEO agency US (NoGood) 3m        $15-90K                 ←─ 3-6x más caro, solo LLM
+```
+
+### Capacity model interno
+
+Con equipo actual (1 senior + 1 mid + 1 junior dev part-time):
+
+| Configuración cartera | Revenue mensual estimado |
+|---|---|
+| 6 Personal + 2 Empresa + 3 Sostenido | ~€21K/mes |
+| 10 Personal + 4 Empresa + 6 Sostenido (escala) | ~€35-40K/mes |
+| Capacidad simultánea team actual | ~6-8 clientes activos |
+| Para escalar a 12+ clientes simultáneos | +1 mid (50K) |
+
+### Cambios pricing V1 → V2 (resumen)
+
+| Métrica | V1 (antes) | **V2 competitivo** | Cambio |
+|---|---|---|---|
+| Personal tier mid | €11.5K | **€6.5K** | -43% |
+| Empresa tier mid | €22.5K | **€14K** | -38% |
+| Margen Personal | 58% | **75%** | +17pp |
+| Margen Empresa | 68% | **79%** | +11pp |
+| Tiers totales | 4 | **5** (añadido Starter) | +1 |
+| Sweet spot vs LinkedIn coachs | 4-5x | **2-3x premium** | mucho más vendible |
+| Sweet spot vs PR boutique | 0.5x | **0.3-0.4x** | claramente más barato |
 
 ### Comparables mercado
 
