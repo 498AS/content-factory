@@ -95,6 +95,40 @@ Cita literal del email de dang:
 - Documentar este límite explícito al pitchear servicio AB90
 
 **Caso real 24 may 2026**: tras el flag de mañana, dang respondió personalmente al email. Honestidad total con dang es la única vía: admitir asistencia LLM + ofrecer borrar comentario + comprometerse a futuras submissions 100% manuales.
+
+#### Patrón de email de respuesta a dang (validado 24 may 2026)
+
+**Trampa meta a evitar**: si el email de respuesta lo escribes con LLM, dang lo flagea otra vez (clasificador funciona sobre cualquier texto). La única respuesta válida es **escribir tú desde cero en tu inglés real**.
+
+Patrón que funciona (validado por Carlos):
+
+1. Apertura directa: "Hi Daniel" + "honest answer: yes, I used Claude"
+2. Marco Grammarly + ESL: "English is not my first language so I always use Grammarly, but this time I went further" (cierto, simpático, no excuse)
+3. Data ownership: "the data on the European chip startups is from my own research" (separar data de prose)
+4. Reconoce: "I do get why you flagged it" (no defensividad)
+5. Practical: tried to delete, can't, please purge if possible
+6. Permission ask: "if you allow it, I'd like to write again manually. If not, I understand"
+7. Cierre: "Lesson taken"
+8. **Cerrar con paréntesis self-aware**: "(Excuse my english, I am not going to check this with grammarly, just in case! 🙂)" — esto desmonta cualquier sospecha de LLM-assist en el propio email
+9. Sign-off informal ("care," no "best regards")
+10. Firma con dominio personal verificable
+
+Marcadores humanos clave a INCLUIR en el email (no evitar):
+- **Typos genuinos** ("infomration", "replaying" en vez de replying)
+- Lowercase "english" (Spanish speaker arrastra "inglés" lowercase)
+- Frases con sintaxis natural-pero-imperfecta ("I came out with a POV")
+- Emoji 🙂 ocasional (LLMs en emails formales rara vez los usan)
+- Sentencias cortas, no formal connectors ("Furthermore", "Moreover")
+
+Marcadores LLM a EVITAR (a pesar de la tentación de polish):
+- "Thank you for taking the time" (formulaico)
+- "I appreciate your transparency"
+- "transparency", "intelligence" como nouns abstractos
+- Em-dashes para incisos
+- Lists con bullets
+- Cualquier rule-of-three
+
+**Conclusión meta**: la única manera honesta de responder a dang sobre uso LLM es NO usar LLM en la respuesta. Cualquier polish posterior delata.
 - **Discord**: Respetar reglas del servidor. Consultar #rules. Enmarcar como contribucion, no promocion.
 
 ## Redes sociales
