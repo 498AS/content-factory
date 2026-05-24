@@ -1,0 +1,48 @@
+# Project workspaces (each project has its own repo or stays local)
+project_*/
+proyecto-*/
+
+# WP credentials & secrets
+_system/.wp-credentials*
+*.env
+.env.*
+
+# Playwright debug
+.playwright-cli/
+*.session
+
+# Screenshots and temp
+*.png
+*.jpg
+*.gif
+*.mp4
+*.webp
+!docs/**/*.png
+!docs/**/*.jpg
+!case-studies/assets/*.png
+!case-studies/assets/*.jpg
+
+# macOS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporales
+/tmp/
+*.bak
+*.tmp
