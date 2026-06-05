@@ -1,0 +1,15 @@
+{
+  "project_id": "project-498b-trampa-tokens",
+  "created_at": "2026-06-04T00:00:00Z",
+  "source_words": 5617,
+  "system_prompt_version": "2.0",
+
+  "channels_generated": ["blog_es", "blog_en", "blog_ca", "linkedin_company_498a"],
+
+  "published": {},
+
+  "metrics": {},
+
+  "tags": ["IA", "estrategia multimodelo", "lock-in", "tokens", "model routing", "IA soberana", "FinOps", "LLM", "resiliencia"],
+  "notes": "Proyecto 498B / Zoopa. Source: repo ZOOPA-Smart-Agency/trampa-tokens ('La trampa de los tokens'). Angulo: sostenibilidad de la estrategia de modelos como ventaja competitiva; lock-in de proveedor unico; arquitectura multimodelo (routing + fallback + opcion soberana). Canales: blog ES/EN/CA (zoopa.es, autor Carlos Ortet) + post LinkedIn pagina 498AS. Bloque 3 (caso real con cliente nombrado) con PLACEHOLDER: rellenar antes de publicar. Featured image: PENDIENTE. Pages para clientes = fase posterior. Pieza hermana de project-498a-ai-cost-trap (mismo dominio tematico, angulo distinto)."
+}
