@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Benchmark Cualitativo Suplementos — Solaray</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 2cm 1.5cm 2cm 1.5cm;
+      @top-left { content: string(doc-title); font-family: 'Georgia', serif; font-size: 8pt; color: #888; margin-bottom: 5mm; }
+      @top-right { content: string(doc-section); font-family: 'Georgia', serif; font-size: 8pt; color: #888; margin-bottom: 5mm; }
+      @bottom-center { content: "Página " counter(page) " de " counter(pages); font-family: 'Georgia', serif; font-size: 8pt; color: #999; margin-top: 5mm; }
+      @bottom-right { content: "ZOOPA · 498AS"; font-family: 'Georgia', serif; font-size: 7pt; color: #bbb; margin-top: 5mm; }
+    }
+    @page :first { @top-left { content: ""; } @top-right { content: ""; } @bottom-center { content: ""; } @bottom-right { content: ""; } }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Georgia', serif; font-size: 11pt; line-height: 1.5; color: #1a1a1a; background: #fff; max-width: 210mm; margin: 0 auto; padding: 40px; string-set: doc-title attr(data-title); }
+    .cover { page-break-after: always; min-height: 90vh; display: flex; flex-direction: column; justify-content: space-between; padding: 60px 20px 40px; }
+    .cover-eyebrow { font-size: 10pt; text-transform: uppercase; letter-spacing: 2px; color: #666; margin-bottom: 30px; }
+    .cover h1 { font-size: 40pt; font-weight: 400; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 20px; max-width: 95%; }
+    .cover-subtitle { font-size: 15pt; font-style: italic; color: #555; max-width: 80%; margin-bottom: 50px; line-height: 1.4; }
+    .cover-headline-metric { background: #0a0a0a; color: #fff; padding: 30px 35px; margin: 30px 0 50px; max-width: 90%; }
+    .cover-headline-metric .metric-value { font-size: 40pt; font-weight: 700; letter-spacing: -2px; line-height: 1.05; }
+    .cover-headline-metric .metric-label { font-size: 11pt; text-transform: uppercase; letter-spacing: 1.5px; margin-top: 10px; opacity: 0.7; }
+    .cover-footer { display: flex; justify-content: space-between; align-items: flex-end; padding-top: 30px; border-top: 1px solid #ccc; font-size: 10pt; }
+    .cover-author strong { display: block; font-size: 12pt; margin-bottom: 3px; }
+    .cover-date { text-align: right; color: #666; }
+    .cover-brand { font-size: 9pt; font-weight: 700; letter-spacing: 1.5px; color: #000; }
+    .exec-summary { background: #f3f3f3; padding: 25px 30px; margin-bottom: 35px; border-radius: 2px; }
+    .exec-summary h2 { font-size: 10pt; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 14px; font-weight: 700; color: #000; }
+    .exec-summary p { font-size: 11pt; margin-bottom: 10px; }
+    .exec-summary strong { color: #b30000; }
+    .section { margin-bottom: 32px; }
+    .section-header { display: flex; align-items: baseline; margin-bottom: 18px; border-bottom: 1px solid #ddd; padding-bottom: 10px; }
+    .section-number { font-size: 9pt; font-weight: 700; letter-spacing: 2px; color: #888; margin-right: 18px; text-transform: uppercase; }
+    .section-number::before { content: "§ "; color: #ccc; }
+    .section-title { font-size: 15pt; font-weight: 600; flex: 1; string-set: doc-section content(); }
+    .insight-box { background: #fef9ed; padding: 14px 18px; margin-bottom: 14px; font-size: 10pt; border-radius: 2px; }
+    .insight-box::before { content: "INSIGHT"; display: inline-block; font-size: 8pt; font-weight: 700; letter-spacing: 1.5px; color: #8a5800; background: #fff; padding: 2px 8px; margin-right: 10px; border-radius: 2px; }
+    .solution-box { background: #f0f8f0; padding: 14px 18px; margin-bottom: 14px; font-size: 10pt; border-radius: 2px; }
+    .solution-box::before { content: "OPORTUNIDAD"; display: inline-block; font-size: 8pt; font-weight: 700; letter-spacing: 1.5px; color: #1f6b1f; background: #fff; padding: 2px 8px; margin-right: 10px; border-radius: 2px; }
+    table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 8.5pt; }
+    th { background: #1a1a1a; color: #fff; text-align: left; padding: 7px 8px; font-weight: 500; font-size: 8pt; text-transform: uppercase; letter-spacing: 0.5px; }
+    td { padding: 7px 8px; border-bottom: 1px solid #eaeaea; vertical-align: top; }
+    tr:nth-child(even) { background: #fafafa; }
+    .td-label { font-weight: 700; }
+    .brand-card { background: #fafafa; border-radius: 3px; padding: 16px 20px; margin-bottom: 14px; page-break-inside: avoid; }
+    .brand-card h3 { font-size: 13pt; font-weight: 700; margin-bottom: 4px; }
+    .brand-card .meta { font-size: 8.5pt; color: #777; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .brand-card dl { display: grid; grid-template-columns: 130px 1fr; gap: 3px 10px; font-size: 9.5pt; margin-bottom: 10px; }
+    .brand-card dt { font-weight: 700; color: #444; }
+    .brand-card dd { color: #222; }
+    .learn { background: #f0f8f0; border-radius: 2px; padding: 10px 14px; font-size: 9.5pt; }
+    .learn::before { content: "QUÉ APRENDER"; display: inline-block; font-size: 7.5pt; font-weight: 700; letter-spacing: 1.5px; color: #1f6b1f; margin-right: 8px; }
+    .brand-card.solaray { background: #fffbe9; border: 1.5px solid #e8c84d; }
+    .diag { background: #eef4fb; border-radius: 2px; padding: 10px 14px; font-size: 9.5pt; }
+    .diag::before { content: "DIAGNÓSTICO"; display: inline-block; font-size: 7.5pt; font-weight: 700; letter-spacing: 1.5px; color: #1d5fab; margin-right: 8px; }
+    tr.solaray-row td { background: #fffbe9 !important; font-weight: 600; }
+    .page-break { page-break-before: always; }
+    .final-section { background: #f3f3f3; padding: 22px 25px; margin-top: 20px; border-radius: 2px; }
+    .checklist { list-style: none; margin: 12px 0; }
+    .checklist li { display: flex; align-items: flex-start; margin-bottom: 9px; font-size: 10pt; }
+    .checkbox { width: 14px; height: 14px; border: 1.5px solid #333; margin-right: 11px; margin-top: 3px; flex-shrink: 0; border-radius: 2px; }
+    .note { font-size: 8.5pt; color: #888; font-style: italic; margin-top: 6px; }
+    .scatter { position: relative; height: 250px; margin: 18px 0 34px 34px; border-left: 1.5px solid #999; border-bottom: 1.5px solid #999; }
+    .scatter .ylab { position: absolute; left: -26px; bottom: 0; transform: rotate(-90deg); transform-origin: left bottom; font-size: 8pt; color: #777; letter-spacing: 1px; text-transform: uppercase; }
+    .scatter .xlab { position: absolute; bottom: -18px; left: 50%; transform: translateX(-50%); font-size: 8pt; color: #777; letter-spacing: 1px; text-transform: uppercase; }
+    .scatter .dot { position: absolute; width: 9px; height: 9px; border-radius: 50%; background: #1a1a1a; transform: translate(-50%, 50%); }
+    .scatter .dot.hi { background: #1f6b1f; width: 12px; height: 12px; }
+    .scatter .dot.lo { background: #b30000; }
+    .scatter .pt { position: absolute; font-size: 8pt; color: #333; transform: translate(-50%, 50%); white-space: nowrap; font-weight: 600; }
+    .scatter .quad { position: absolute; font-size: 7.5pt; color: #c4c4c4; text-transform: uppercase; letter-spacing: 1px; }
+    footer { margin-top: 45px; padding-top: 25px; border-top: 2px solid #000; }
+    .footer-brands { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+    .footer-brand { font-size: 14pt; font-weight: 700; color: #000; }
+    .footer-brand-url { font-size: 9pt; color: #666; margin-left: 10px; }
+    .footer-info { display: flex; justify-content: space-between; font-size: 8pt; color: #999; }
+    .footer-info strong { color: #666; }
+    .footer-note { margin-top: 20px; padding-top: 10px; font-size: 8pt; color: #999; text-align: center; }
+    .footer-note .internal { font-size: 7pt; }
+    @media print { body { padding: 0; } .brand-card, .section { page-break-inside: avoid; } }
+  </style>
+</head>
+<body data-title="Benchmark Cualitativo · Solaray">
+
+  <div class="cover">
+    <div>
+      <div class="cover-eyebrow">Inteligencia competitiva · Solaray · INFORME CUALITATIVO</div>
+      <h1>Benchmark cualitativo de contenido de marcas de suplementos</h1>
+      <div class="cover-subtitle">Cómo comunica Solaray frente a 11 competidoras: tono, estética, tipo de contenido, frecuencia, colaboraciones y storytelling. Analizado sobre el feed real de Instagram.</div>
+    </div>
+    <div class="cover-headline-metric">
+      <div class="metric-value">Soluciones + Resultados</div>
+      <div class="metric-label">Lo que el público de suplementos quiere ver — y lo que más comunidad genera en el sector</div>
+    </div>
+    <div class="cover-footer">
+      <div class="cover-author"><strong>Zoopa</strong><span>Inteligencia competitiva</span></div>
+      <div class="cover-date"><div>Junio 2026</div><div class="cover-brand">ZOOPA · 498AS</div></div>
+    </div>
+  </div>
+
+  <!-- EXEC -->
+  <div class="exec-summary">
+    <h2>Resumen Ejecutivo</h2>
+    <p style="background:#eef4fb; border-radius:2px; padding:8px 12px; font-size:9pt; color:#1d5fab; margin-bottom:12px;"><strong>Informe CUALITATIVO.</strong> Analiza CÓMO comunican las marcas: tono, estética, tipo de contenido, frecuencia, colaboraciones y storytelling. Las métricas de tamaño y engagement (seguidores, ER, demografía) van en el informe CUANTITATIVO aparte.</p>
+    <p><strong>El público de suplementos quiere ver soluciones y resultados.</strong> El benchmark no se queda en describir cómo comunican los rivales: termina en recomendaciones concretas (§4), cada una con el resultado que persigue.</p>
+    <p><strong>El sector se divide entre lo clínico-aburrido y lo premium-frío.</strong> Pocas marcas logran una estética propia reconocible. Las que más comunidad generan no son las más bonitas ni las más frecuentes, sino las que ponen una cara experta o tratan problemas reales y cotidianos.</p>
+    <p><strong>Frecuencia ≠ comunidad.</strong> IVB publica solo ~2-3 posts/semana y conecta más que Solgar o Be Levels, que publican mucho más (~5-10/sem). El volumen no construye comunidad.</p>
+    <p><strong>El "influencer" preferido del sector es el sanitario.</strong> Nutricionistas y médicos son el formato de colaboración dominante; la autoridad clínica es la moneda de cambio.</p>
+  </div>
+
+  <!-- SECTION 1 — MATRIZ -->
+  <div class="section">
+    <div class="section-header"><div class="section-number">Sección 1</div><div class="section-title">Matriz comparativa</div></div>
+    <table>
+      <tr><th>Marca</th><th>Estética</th><th>Tono</th><th>Cara experta</th><th>Frecuencia</th><th>Colaboraciones</th></tr>
+      <tr class="solaray-row"><td class="td-label">Solaray ★</td><td>Mixta funcional + UGC (amarillo de marca)</td><td>Accesible, educativo, cercano</td><td>Parcial (psiquiatra, farmacéuticas)</td><td>~6-7/sem</td><td>Sí (farmacias + profesional)</td></tr>
+      <tr><td class="td-label">Be Levels</td><td>Editorial premium minimalista</td><td>Científico-aspiracional cálido</td><td>Distribuida (médico + invitados)</td><td>~5-6/sem</td><td>Alta (creadoras + médicas)</td></tr>
+      <tr><td class="td-label">IVB</td><td>Científico / infográfico</td><td>Riguroso, didáctico, autoridad</td><td>Máxima (la doctora)</td><td>~2-3/sem</td><td>No (autoridad propia)</td></tr>
+      <tr><td class="td-label">A.M. Lajusticia</td><td>Heritage + rostro fundadora</td><td>Cálido, didáctico, legado</td><td>Sí (la fundadora)</td><td>~2-3/sem</td><td>No</td></tr>
+      <tr><td class="td-label">Superlativa</td><td>Roja+negra, fashion/lifestyle</td><td>Cool, urbano, aspiracional</td><td>Parcial (creadores)</td><td>~3/sem</td><td>Vía creadores/UGC</td></tr>
+      <tr><td class="td-label">Solgar</td><td>Heritage soft/oro (dispersa)</td><td>Autoridad + modernización</td><td>No (vía creadores)</td><td>~5-10/sem (campaña)</td><td>Muy alta (creadores + eventos)</td></tr>
+      <tr><td class="td-label">Kobho</td><td>Marrón cálida (packaging)</td><td>Aspiracional, results-driven</td><td>No</td><td>~9/sem (la más alta)</td><td>No</td></tr>
+      <tr><td class="td-label">Arkopharma</td><td>Verde/plantas, mass-market</td><td>Práctico, problema-solución</td><td>No</td><td>~5/sem</td><td>Baja (sponsor fútbol)</td></tr>
+      <tr><td class="td-label">Nutralie</td><td>Comercial / e-commerce</td><td>Accesible, beneficio-driven</td><td>Parcial (nutricionista)</td><td>~2/sem</td><td>Baja (gym)</td></tr>
+      <tr><td class="td-label">Nutergia</td><td>Natural + científico suave</td><td>Herbalista + credibilidad NCA</td><td>No (1 médico)</td><td>~3/sem</td><td>Baja (1 doctor)</td></tr>
+      <tr><td class="td-label">Lamberts</td><td>Clínica azul, datada</td><td>Clínico, informativo, B2B</td><td>No (1 nutricionista)</td><td>~1/sem (la más baja)</td><td>Baja (1 nutricionista)</td></tr>
+      <tr><td class="td-label">Algemica</td><td>Cuerpo real, cálida, relatable</td><td>Cercano, body-aware, PNI</td><td>No (perfil clínico)</td><td>~2/sem</td><td>No</td></tr>
+    </table>
+    <p class="note">Análisis sobre el feed real de Instagram (jun 2026). Frecuencia estimada sobre las ~12 publicaciones más recientes de cada cuenta.</p>
+    <div style="background:#fff6e6; border:1px solid #e8c84d; border-radius:2px; padding:12px 16px; margin:16px 0 4px; font-size:9pt;">
+      <div style="font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:8pt; color:#8a5800; margin-bottom:6px;">Nota metodológica · alcance de las cuentas</div>
+      Se analizan los perfiles de <strong>España</strong> donde la marca tiene cuenta de país: Solaray (@solaray.es), Solgar (@solgar_esp), Arkopharma (@arkopharmaesp) y Nutergia (@nutergia_es); sus cuentas globales (mayores) quedan fuera. <strong>Excepciones a tener en cuenta:</strong> <strong>Lamberts</strong> (@lamberts_nutrition) es cuenta <strong>ibérica (España + Portugal)</strong>; <strong>A.M. Lajusticia</strong> (@anamarialajusticia) es cuenta <strong>única con audiencia también latinoamericana</strong>. El resto de marcas españolas (Be Levels, Superlativa, IVB, Kobho, Nutralie, Algemica) tienen un único perfil global, con audiencia mayoritariamente española.
+    </div>
+  </div>
+
+  <!-- SECTION 2 — FICHAS -->
+  <div class="section page-break">
+    <div class="section-header"><div class="section-number">Sección 2</div><div class="section-title">Fichas por marca</div></div>
+
+    <div class="brand-card solaray">
+      <h3>Solaray ★ <span style="font-size:9pt;font-weight:400;color:#888;">(nuestra marca)</span></h3><div class="meta">Vitaminas y complementos naturales · Educativo + farmacia</div>
+      <dl>
+        <dt>Contenido</dt><dd>Serie educativa propia "Science Bites" (ciencia de ingredientes), lanzamientos, reels UGC/testimonial y colaboraciones con farmacias. Formato 100% reels.</dd>
+        <dt>Storytelling</dt><dd>Ciencia accesible de ingredientes naturales, con respaldo de la farmacia y el profesional sanitario.</dd>
+        <dt>Diferenciación</dt><dd>Formato educativo propio (Science Bites) + amplia red de farmacias-creadoras + color amarillo de marca.</dd>
+        <dt>Producción</dt><dd>Media y heterogénea: gráficos de marca cuidados mezclados con reels UGC más crudos.</dd>
+      </dl>
+      <div class="diag">Solaray ya hace bien lo que el sector valora: cadencia alta (~6-7/sem), formato reels, educación de ingredientes y red de farmacias. Los retos: una identidad visual más consistente y memorable, y una cara experta reconocible que concentre la autoridad (hoy dispersa). Ahí marcan el camino IVB (autoridad médica) y Algemica (cercanía relatable, comunidad muy implicada pese a su tamaño).</div>
+    </div>
+
+    <div class="brand-card">
+      <h3>Be Levels</h3><div class="meta">Salud integral · Editorial premium</div>
+      <dl>
+        <dt>Contenido</dt><dd>Producto + educativo + testimonial experto ("EXPERT REVIEW") + comunidad. Reels y carruseles editoriales.</dd>
+        <dt>Storytelling</dt><dd>Salud basada en ciencia + pertenencia (#belever, Be Club). Estilo de vida premium consciente.</dd>
+        <dt>Diferenciación</dt><dd>La marca más "editorial/premium"; se distingue por dirección de arte, no por precio.</dd>
+        <dt>Producción</dt><dd>Alta y muy consistente. Grid de revista.</dd>
+      </dl>
+      <div class="learn">Dirección de arte premium + colaboraciones con perfil sanitario (médicas) suman alcance y credibilidad. Pero la estética por sí sola no basta: lo bonito no equivale a comunidad activa.</div>
+    </div>
+
+    <div class="brand-card">
+      <h3>IVB</h3><div class="meta">Hormonal · Científico/divulgativo</div>
+      <dl>
+        <dt>Contenido</dt><dd>Divulgación científica, infografías y tablas ("IVB Ciencia"), how-to, reels de la doctora.</dd>
+        <dt>Storytelling</dt><dd>"Elevar el estándar"; la ciencia y la fundadora como aval absoluto.</dd>
+        <dt>Diferenciación</dt><dd>La doctora ES la marca; la más médica del sector.</dd>
+        <dt>Producción</dt><dd>Buena pero funcional/clínica, no editorial-lujo.</dd>
+      </dl>
+      <div class="learn">La cara experta médica es la que más comunidad genera del sector, SIN colaboraciones ni estética cara. El motor es contenido educativo riguroso + un rostro experto reconocible. La palanca más replicable.</div>
+    </div>
+
+    <div class="brand-card">
+      <h3>Ana María Lajusticia</h3><div class="meta">Magnesio · Marca-persona legacy</div>
+      <dl>
+        <dt>Contenido</dt><dd>Legado de la fundadora (archivo), educativo ("Diccionario Lajusticia"), comparativas de producto, Q&amp;A con su voz, sub-marca AML Sport.</dd>
+        <dt>Storytelling</dt><dd>La fundadora como autoridad emocional del magnesio, incluso de forma póstuma.</dd>
+        <dt>Diferenciación</dt><dd>Marca-persona única con 40+ años de herencia.</dd>
+        <dt>Producción</dt><dd>Media, heterogénea (archivo + gráficos + sport).</dd>
+      </dl>
+      <div class="learn">El poder de una marca-persona: convierten el legado en contenido de autoridad emocional. Una figura humana reconocible rinde más en comunidad que el producto solo.</div>
+    </div>
+
+    <div class="brand-card">
+      <h3>Superlativa</h3><div class="meta">Estrés/cortisol · Fashion/lifestyle</div>
+      <dl>
+        <dt>Contenido</dt><dd>Lifestyle aspiracional, creadores/UGC, producto-stick, códigos fashion (bolso, cóctel). Incluye público masculino.</dd>
+        <dt>Storytelling</dt><dd>Bienestar como estilo de vida cool y urbano; "toma el control".</dd>
+        <dt>Diferenciación</dt><dd>La más fashion del sector; color rojo de marca muy reconocible.</dd>
+        <dt>Producción</dt><dd>Alta (editorial/UGC mezclados).</dd>
+      </dl>
+      <div class="learn">La estética fashion diferencia y atrae a un público más joven y algo más masculino. Pero conviene cuidar la calidad de la audiencia: la imagen no debe construirse sobre seguidores poco fiables.</div>
+    </div>
+
+    <div class="brand-card">
+      <h3>Solgar</h3><div class="meta">Vitaminas legacy · Modernización vía partners</div>
+      <dl>
+        <dt>Contenido</dt><dd>Premios (Vogue), educativo, eventos presenciales (Golden Mornings), colaboraciones con nutricionistas y perfiles de longevidad.</dd>
+        <dt>Storytelling</dt><dd>Herencia "desde 1947" reactivada con creadores y experiencias.</dd>
+        <dt>Diferenciación</dt><dd>Legacy que se moderniza vía ejército de colaboraciones.</dd>
+        <dt>Producción</dt><dd>Media y heterogénea (la coherencia visual se resiente).</dd>
+      </dl>
+      <div class="learn">Una marca veterana puede revitalizarse con muchas colaboraciones y eventos. El riesgo: sin un sistema visual fuerte, tanto contenido externo diluye la identidad.</div>
+    </div>
+
+    <div class="brand-card">
+      <h3>Kobho</h3><div class="meta">Anti-aging · Volumen y tendencia</div>
+      <dl>
+        <dt>Contenido</dt><dd>Lanzamientos, tips, retos con resultados ("Reto KobhoGLP, -2,4 kg"), surf de la tendencia GLP-1. Reels dominante.</dd>
+        <dt>Storytelling</dt><dd>Longevidad y "ciencia accesible"; resultados tangibles.</dd>
+        <dt>Diferenciación</dt><dd>Anti-aging + ola GLP + cadencia altísima.</dd>
+        <dt>Producción</dt><dd>Buena y coherente (paleta marrón cálida).</dd>
+      </dl>
+      <div class="learn">Cadencia altísima (~9/sem) + surfear tendencias (GLP-1) + contenido de resultados. Pero publicar mucho no equivale a comunidad: el volumen por sí solo no genera conexión.</div>
+    </div>
+
+    <div class="brand-card">
+      <h3>Arkopharma</h3><div class="meta">Fitoterapia · Mass-market</div>
+      <dl>
+        <dt>Contenido</dt><dd>Sorteos, problemas de salud cotidianos, imaginario de plantas, tie-in con fútbol (El Chiringuito).</dd>
+        <dt>Storytelling</dt><dd>Soluciones naturales prácticas para problemas concretos.</dd>
+        <dt>Diferenciación</dt><dd>Fitoterapia mass-market + sponsorship deportivo (alcance masculino).</dd>
+        <dt>Producción</dt><dd>Media, promocional tipo drugstore.</dd>
+      </dl>
+      <div class="learn">Amplitud de temas + sorteos + sponsorship deportivo llegan a un público masivo y más masculino. El coste: una estética poco premium que limita el valor de marca.</div>
+    </div>
+
+    <div class="brand-card">
+      <h3>Nutralie</h3><div class="meta">Multiárea · ADN e-commerce</div>
+      <dl>
+        <dt>Contenido</dt><dd>Producto + beneficios e ingredientes (estilo ficha de Amazon), lifestyle optimista, nutricionista (Mariana Viola).</dd>
+        <dt>Storytelling</dt><dd>"Potencia tu mejor versión"; bienestar accesible.</dd>
+        <dt>Diferenciación</dt><dd>ADN e-commerce/Amazon; IG como escaparate.</dd>
+        <dt>Producción</dt><dd>Buena pero de catálogo, poco editorial.</dd>
+      </dl>
+      <div class="learn">Su fuerza real está en Amazon; Instagram es secundario y se nota (baja frecuencia, contenido tipo ficha de producto). Útil si el canal es e-commerce, limitado para construir marca.</div>
+    </div>
+
+    <div class="brand-card">
+      <h3>Nutergia</h3><div class="meta">Micronutrición · Natural + científico</div>
+      <dl>
+        <dt>Contenido</dt><dd>Recetas, kits estacionales, educación de ingredientes, congreso científico (NCA), lanzamientos.</dd>
+        <dt>Storytelling</dt><dd>Concepto propio "Nutrición Celular Activa" + cercanía herbalista.</dd>
+        <dt>Diferenciación</dt><dd>Micronutrición con concepto patentado + naturaleza.</dd>
+        <dt>Producción</dt><dd>Media, suave y natural (algo de catálogo).</dd>
+      </dl>
+      <div class="learn">Combinar contenido lifestyle (recetas, naturaleza) con la credibilidad de un concepto científico propio (NCA) da profundidad. Un territorio conceptual propio diferencia.</div>
+    </div>
+
+    <div class="brand-card">
+      <h3>Lamberts</h3><div class="meta">Ortomolecular · Profesional/B2B</div>
+      <dl>
+        <dt>Contenido</dt><dd>Problema-solución, producto, filosofía de marca, sellos GMP, alguna nutricionista. Mucho stock fotográfico.</dd>
+        <dt>Storytelling</dt><dd>Calidad farmacéutica para profesionales de la salud.</dd>
+        <dt>Diferenciación</dt><dd>Ortomolecular/profesional, pero visualmente anticuada.</dd>
+        <dt>Producción</dt><dd>Baja/datada (azul corporativo + stock).</dd>
+      </dl>
+      <div class="learn">Ejemplo de qué evitar en social: baja cadencia (~1/sem) y estética datada. Su valor está en el canal profesional, no en Instagram. Lo clínico no obliga a ser aburrido.</div>
+    </div>
+
+    <div class="brand-card">
+      <h3>Algemica</h3><div class="meta">PNI/integrativo · Relatable clínico</div>
+      <dl>
+        <dt>Contenido</dt><dd>Problemas corporales reales y cotidianos (hinchazón, piernas pesadas), educación, ilustración, enfoque PNI.</dd>
+        <dt>Storytelling</dt><dd>Salud integrativa desde el cuerpo real y cercano.</dd>
+        <dt>Diferenciación</dt><dd>PNI + body-positive relatable; boutique clínica.</dd>
+        <dt>Producción</dt><dd>Buena para su tamaño; cálida y cercana.</dd>
+      </dl>
+      <div class="learn">El contenido relatable de problemas corporales reales conecta de verdad: con la cuenta más pequeña del set construye una comunidad muy implicada. Cercanía &gt; tamaño.</div>
+    </div>
+  </div>
+
+  <!-- SECTION 3 — PATRONES -->
+  <div class="section">
+    <div class="section-header"><div class="section-number">Sección 3</div><div class="section-title">Patrones transversales</div></div>
+
+    <div class="insight-box">Cuatro territorios estéticos: <strong>editorial-premium</strong> (Be Levels), <strong>clínico-educativo</strong> (IVB, Lamberts, Algemica), <strong>fashion-lifestyle</strong> (Superlativa) y <strong>natural</strong> (Nutergia, Arkopharma, Kobho). Pocas marcas son visualmente memorables; hay hueco para una identidad propia fuerte.</div>
+    <div class="insight-box">Dos modelos de colaboración: <strong>collab-heavy</strong> (Solgar, Be Levels apoyan su alcance en creadores y profesionales) frente a <strong>autoridad propia</strong> (IVB, A.M. Lajusticia, Kobho no colaboran y se sostienen en su figura o su volumen).</div>
+    <div class="insight-box">La frecuencia no predice la comunidad: las que más conectan (IVB con su cara experta, Algemica con contenido relatable) no son las que más publican. Solgar, Be Levels o Kobho publican mucho más y conectan menos. Lo que genera comunidad es el tipo de contenido, no el volumen.</div>
+    <div class="insight-box">El profesional sanitario es el "influencer" del sector: nutricionistas y médicos aparecen como colaboradores o caras en la mayoría (Be Levels, Solgar, Nutergia, Nutralie, Lamberts). La autoridad clínica es la moneda de cambio.</div>
+  </div>
+
+  <!-- SECTION 4 — POSTS MEJOR/PEOR -->
+  <div class="section page-break">
+    <div class="section-header"><div class="section-number">Sección 4</div><div class="section-title">Posts que más y menos funcionan</div></div>
+    <p style="font-size:9.5pt; margin-bottom:8px;">El post con más y con menos "me gusta" de cada marca, con <strong>cita textual</strong> de la publicación (muestra de ~40 posts recientes, medido en Instagram el 29/06/2026). El mejor/peor puede variar ligeramente según la muestra.</p>
+    <table>
+      <tr><th style="width:11%;">Marca</th><th>▲ Su mejor post — cita textual</th><th>▼ Su peor post — cita textual</th></tr>
+      <tr class="solaray-row"><td class="td-label">Solaray ★</td><td><strong>8.381</strong> · colab @gloriacarrion_: <em>“INFO SOBRE LA VITAMINA B12. (Publi) Familia! Hoy os traigo un reel un poco más educativo acerca de la vitamina B12…”</em></td><td><strong>32</strong> · <em>“Hoy te compartimos 5 formas sencillas (y poderosas) de ayudar a tu cuerpo a resetearse: Sauna, baño frío, Magnesium, caminar, estirar…”</em></td></tr>
+      <tr><td class="td-label">IVB</td><td><strong>6.287</strong> · <em>“¿Sabías que no todos los complementos se toman de la misma forma? Cada uno tiene su mejor momento del día…”</em></td><td><strong>140</strong> · <em>“Para elegir una proteína, una de las características más importantes en las que te fijas es la cantidad real de proteína por toma…”</em></td></tr>
+      <tr><td class="td-label">Be Levels</td><td><strong>2.755</strong> · colab @paulaordovas: <em>“No creo en soluciones mágicas. Pero sí en escuchar a tu cuerpo antes de que grite.”</em></td><td><strong>74</strong> · <em>“Criar también es proteger lo invisible. Experiencia clínica y con un enfoque integrativo…”</em></td></tr>
+      <tr><td class="td-label">A.M. Lajusticia</td><td><strong>2.126</strong> · <em>“Comes, pero… ¿te estás nutriendo de verdad? Ana María siempre lo decía claramente: proteínas, vitamina C, grasas saludables…”</em></td><td><strong>19</strong> · <em>“¿El SOP ahora se llama SOMP? Te contamos por qué este cambio va mucho más allá del nombre.”</em></td></tr>
+      <tr><td class="td-label">Solgar</td><td><strong>2.031</strong> · colab @vanesalorenzo_: <em>“¿Quién es más probable que…? Gracias @solgar_es y @telva por un nuevo capítulo de #EnEquilibrioTalks.”</em></td><td><strong>17</strong> · colab longevidad: <em>“Dormir bien no es solo ‘descansar’. El sueño es uno de los grandes pilares de la longevidad…”</em></td></tr>
+      <tr><td class="td-label">Kobho</td><td><strong>792</strong> · <em>“NUEVO LANZAMIENTO 🚀 ¡Por fin salen a la luz las proteínas y creatina más completas del mercado! Healthy is the new cool.”</em></td><td><strong>23</strong> · <em>“A veces pensamos que el estrés, la ansiedad… dependen únicamente de nuestra mente, cuando en realidad hay mucho más detrás.”</em></td></tr>
+      <tr><td class="td-label">Arkopharma</td><td><strong>516</strong> · colab @elchiringuitotv: <em>“⚽ SORTEO ESPECIAL MUNDIAL DE FÚTBOL 2026 ⚽ Sorteamos 50 lotes completos de Arkovital Hidratium.”</em></td><td><strong>8</strong> · <em>“¿Sigues esperando la solución milagrosa para controlar el peso? No existe…”</em></td></tr>
+      <tr><td class="td-label">Algemica</td><td><strong>357</strong> · <em>“🔍 Top alimentos ricos en hierro que debes incluir en tu dieta. ¿Quieres un aporte extra de hierro?…”</em></td><td><strong>33</strong> · <em>“Tu estómago merece algo más que una solución temporal. En Algēmica hemos formulado AS6 Acidesal…”</em></td></tr>
+      <tr><td class="td-label">Lamberts</td><td><strong>308</strong> · colab @anutricionistaexplica: <em>“Existe um grande défice de vitamina D na população portuguesa…”</em></td><td><strong>7</strong> · <em>“@lamberts_nutrition colabora como patrocinador plata del X Congreso de Medicina Ambiental…”</em></td></tr>
+      <tr><td class="td-label">Superlativa</td><td><strong>305</strong> · <em>“Un año más, hemos teñido de naranja Infarma 2026. Para nosotros el consejo farmacéutico es importantísimo…”</em></td><td><strong>40</strong> · <em>“NEW! Superlativa Magnesium+ Stick. Tu nuevo imprescindible en tu rutina de noche.”</em></td></tr>
+      <tr><td class="td-label">Nutergia</td><td><strong>107</strong> · <em>“Hoy compartimos esta preciosa iniciativa del Colegio Oficial de Farmacéuticos de Granada…”</em></td><td><strong>7</strong> · <em>“¿Sientes que el domingo es el peor día de la semana? ¿Te falta energía…?”</em></td></tr>
+      <tr><td class="td-label">Nutralie</td><td><strong>91</strong> · colab @wearefrizzant: <em>“Esta semana hemos celebrado la Nutralie Week en FRIZZANT…”</em></td><td><strong>2</strong> · <em>“Tu bienestar empieza con las pequeñas decisiones de cada día. Elige cuidarte, elige sentirte mejor.”</em></td></tr>
+    </table>
+    <div class="insight-box"><strong>Qué funciona:</strong> colaboraciones con creadores (Solaray con @gloriacarrion_, Be Levels con @paulaordovas, Solgar con Vanesa Lorenzo, Nutralie con @wearefrizzant), sorteos (Arkopharma, Solgar) y hooks educativos relatables ("¿te nutres de verdad?", "no todos los complementos se toman igual"). <strong>Qué NO funciona:</strong> terminología técnica de nicho, el product-pitch genérico y los anuncios corporativos/patrocinios.</div>
+    <div class="diag"><strong>Solaray:</strong> su mejor post (8.381) fue una <strong>colaboración con creador</strong> educando sobre un ingrediente concreto (B12); el peor, un listicle genérico de marca. El camino está claro: más creador + educación de ingrediente, menos post de marca genérico.</div>
+  </div>
+
+  <!-- SECTION 5 — RECOMENDACIONES -->
+  <div class="section">
+    <div class="section-header"><div class="section-number">Sección 5</div><div class="section-title">Recomendaciones: soluciones y resultados</div></div>
+    <p style="font-size:10pt; margin-bottom:12px;">El público de suplementos —y el de Solaray— quiere ver <strong>soluciones y resultados</strong>. Cada recomendación se enuncia como una acción concreta y el resultado que persigue.</p>
+    <table>
+      <tr><th style="width:36%;">Solución (qué hacer)</th><th>Resultado esperado</th><th style="width:20%;">Referencia</th></tr>
+      <tr><td><strong>Cara experta fija.</strong> Un médico/farmacéutico/nutricionista que sea la voz reconocible de Solaray, de forma recurrente.</td><td>Más autoridad y la mayor conexión con la comunidad del sector.</td><td>IVB</td></tr>
+      <tr><td><strong>Línea "problema → solución → resultado".</strong> Cada pieza: un problema cotidiano, el producto como solución y un resultado o testimonio.</td><td>Más guardados y compartidos; es el contenido que el público pide.</td><td>Algemica · Kobho</td></tr>
+      <tr><td><strong>Contenido de resultados y prueba social.</strong> Retos, casos reales y reseñas (dentro del marco legal).</td><td>Confianza y conversión a compra.</td><td>Kobho ("Reto −2,4 kg")</td></tr>
+      <tr><td><strong>Sistema visual propio y consistente.</strong> Consolidar el amarillo de marca + plantillas fijas.</td><td>Reconocimiento inmediato en el feed; salir del "clínico-aburrido / premium-frío".</td><td>Be Levels</td></tr>
+      <tr><td><strong>Cadencia sostenible 3-5/semana</strong>, priorizando calidad sobre volumen.</td><td>Mejor conexión por publicación; evita el "volumen vacío".</td><td>Solgar (lo que NO hacer)</td></tr>
+      <tr><td><strong>Colaboraciones diferenciales.</strong> Creadores de nicho + el experto propio, no "un nutricionista más".</td><td>Alcance cualificado, no genérico.</td><td>Solgar (collab-heavy)</td></tr>
+    </table>
+    <div style="background:#fef3f3; border-radius:2px; padding:10px 14px; font-size:8.5pt; color:#7a2a2a; margin:8px 0 4px;"><strong>Cumplimiento:</strong> el contenido de resultados y testimonios de complementos alimenticios debe respetar la normativa de declaraciones de salud (UE/EFSA): comunicar soluciones y experiencias reales, sin prometer curación ni resultados garantizados.</div>
+
+    <div class="final-section">
+      <div class="section-header" style="border-bottom: none; padding-bottom: 0;"><div class="section-title">Plan de acción inmediato</div></div>
+      <ul class="checklist" style="margin-top: 12px;">
+        <li><div class="checkbox"></div>Elegir y construir la "cara experta" de Solaray (perfil sanitario fijo y recurrente).</li>
+        <li><div class="checkbox"></div>Lanzar la línea fija "problema → solución → resultado" con plantilla visual propia.</li>
+        <li><div class="checkbox"></div>Arrancar un formato de resultados/testimonios reales, conforme a normativa EFSA.</li>
+        <li><div class="checkbox"></div>Fijar un calendario sostenible de 3-5 posts/semana: calidad sobre volumen.</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-brands">
+      <div><span class="footer-brand">ZOOPA</span> <span class="footer-brand-url">zoopa.es</span></div>
+      <div><span class="footer-brand">498AS</span> <span class="footer-brand-url">498as.com</span></div>
+    </div>
+    <div class="footer-info">
+      <div><strong>ZOOPA</strong> — Innovation &amp; Creative Technology<br><a href="https://zoopa.es">zoopa.es</a></div>
+      <div style="text-align: right;"><strong>498AS Innovation Lab</strong> — AI R&amp;D Division<br><a href="https://498as.com">498as.com</a></div>
+    </div>
+    <div class="footer-note">
+      Benchmark cualitativo de contenido · Junio 2026 · Análisis sobre el feed real de Instagram de cada marca<br>
+      <span class="internal">Documento interno y confidencial — Ecosistema ZOOPA/498AS · No distribuir fuera del cliente</span>
+    </div>
+  </footer>
+
+</body>
+</html>
