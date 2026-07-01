@@ -79,6 +79,24 @@
     .footer-info strong { color: #666; }
     .footer-note { margin-top: 20px; padding-top: 10px; font-size: 8pt; color: #999; text-align: center; }
     .footer-note .internal { font-size: 7pt; }
+    .qmap { margin: 22px 0 30px; page-break-inside: avoid; }
+    .qmap-head { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:12px; gap:18px; }
+    .qmap-title { font-size:14pt; font-weight:700; line-height:1.15; letter-spacing:-0.3px; }
+    .qmap-axes { font-size:7.5pt; text-transform:uppercase; letter-spacing:1px; color:#999; text-align:right; line-height:1.5; white-space:nowrap; }
+    .qplot { position:relative; height:420px; border:1.5px solid #1a1a1a; background:#fff; }
+    .qplot .vline { position:absolute; left:50%; top:0; bottom:0; width:1px; background:#dcdcdc; }
+    .qplot .hline { position:absolute; top:50%; left:0; right:0; height:1px; background:#dcdcdc; }
+    .qplot .qedge { position:absolute; font-size:7pt; font-weight:700; letter-spacing:1px; color:#9a9a9a; text-transform:uppercase; }
+    .qplot .qtop { top:6px; left:50%; transform:translateX(-50%); }
+    .qplot .qbot { bottom:6px; left:50%; transform:translateX(-50%); }
+    .qplot .qleft { left:6px; top:50%; transform:translateY(-50%); writing-mode:vertical-rl; }
+    .qplot .qright { right:6px; top:50%; transform:translateY(-50%); writing-mode:vertical-rl; }
+    .qplot .qquad { position:absolute; font-size:6.8pt; color:#cbcbcb; text-transform:uppercase; letter-spacing:1px; }
+    .qnode { position:absolute; transform:translate(-50%,-50%); background:#fff; border:1px solid #ececec; border-radius:16px; box-shadow:0 1px 5px rgba(0,0,0,0.14); padding:5px 11px; font-size:8pt; font-weight:700; white-space:nowrap; color:#1a1a1a; }
+    .qnode small { font-weight:400; color:#999; font-size:6.5pt; letter-spacing:0.5px; text-transform:uppercase; }
+    .qnode.solaray { background:#ffdd33; border-color:#e0be2e; box-shadow:0 2px 7px rgba(210,170,20,0.45); }
+    .qnode.solaray small { color:#7a6410; }
+    .qnode.objetivo { background:#0a0a0a; color:#fff; font-weight:800; letter-spacing:1.5px; border-color:#0a0a0a; text-transform:uppercase; }
     @media print { body { padding: 0; } .brand-card, .section { page-break-inside: avoid; } }
   </style>
 </head>
@@ -133,6 +151,77 @@
       <div style="font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:8pt; color:#8a5800; margin-bottom:6px;">Nota metodológica · alcance de las cuentas</div>
       Se analizan los perfiles de <strong>España</strong> donde la marca tiene cuenta de país: Solaray (@solaray.es), Solgar (@solgar_esp), Arkopharma (@arkopharmaesp) y Nutergia (@nutergia_es); sus cuentas globales (mayores) quedan fuera. <strong>Excepciones a tener en cuenta:</strong> <strong>Lamberts</strong> (@lamberts_nutrition) es cuenta <strong>ibérica (España + Portugal)</strong>; <strong>A.M. Lajusticia</strong> (@anamarialajusticia) es cuenta <strong>única con audiencia también latinoamericana</strong>. El resto de marcas españolas (Be Levels, Superlativa, IVB, Kobho, Nutralie, Algemica) tienen un único perfil global, con audiencia mayoritariamente española.
     </div>
+  </div>
+
+  <!-- MAPA COMPETITIVO -->
+  <div class="section" style="page-break-inside:avoid;">
+    <div class="qmap">
+      <div class="qmap-head">
+        <div class="qmap-title">Mapa competitivo ·<br>Autoridad × Deseo</div>
+        <div class="qmap-axes">Autoridad experta (Y)<br>× Deseo y comunidad (X)</div>
+      </div>
+      <div class="qplot">
+        <div class="vline"></div><div class="hline"></div>
+        <div class="qedge qtop">+ Autoridad experta</div>
+        <div class="qedge qbot">− Autoridad experta</div>
+        <div class="qedge qleft">− Deseo y comunidad</div>
+        <div class="qedge qright">+ Deseo y comunidad</div>
+        <div class="qquad" style="top:9px; left:10px;">Autoridad sin tirón</div>
+        <div class="qquad" style="top:9px; right:10px;">Referentes deseables</div>
+        <div class="qquad" style="bottom:9px; left:10px;">Genéricas</div>
+        <div class="qquad" style="bottom:9px; right:10px;">Imagen sin aval</div>
+        <div class="qnode objetivo" style="left:60%; top:12%;">Objetivo</div>
+        <div class="qnode" style="left:78%; top:20%;">IVB</div>
+        <div class="qnode" style="left:44%; top:26%;">A.M. Lajusticia</div>
+        <div class="qnode" style="left:80%; top:36%;">Be Levels</div>
+        <div class="qnode" style="left:16%; top:40%;">Lamberts</div>
+        <div class="qnode" style="left:36%; top:47%;">Nutergia</div>
+        <div class="qnode solaray" style="left:52%; top:44%;">Solaray <small>hoy</small></div>
+        <div class="qnode" style="left:68%; top:54%;">Algemica</div>
+        <div class="qnode" style="left:42%; top:58%;">Solgar</div>
+        <div class="qnode" style="left:25%; top:62%;">Nutralie</div>
+        <div class="qnode" style="left:82%; top:68%;">Superlativa</div>
+        <div class="qnode" style="left:66%; top:72%;">Kobho</div>
+        <div class="qnode" style="left:34%; top:76%;">Arkopharma</div>
+      </div>
+    </div>
+    <div class="insight-box">Nadie ocupa del todo el cuadrante "referentes deseables" (arriba-derecha): IVB manda en autoridad y Be Levels en deseo, pero por separado. Ahí está el hueco de Solaray: sumar una <strong>cara experta fija</strong> (subir) a una identidad y comunidad más deseables (derecha).</div>
+  </div>
+
+  <!-- MAPA COMPETITIVO 2 · RIGOR × ACTUALIDAD -->
+  <div class="section" style="page-break-inside:avoid;">
+    <div class="qmap">
+      <div class="qmap-head">
+        <div class="qmap-title">Mapa competitivo ·<br>Rigor × Actualidad</div>
+        <div class="qmap-axes">Rigor / criterio técnico (Y)<br>× Actualidad de marca (X)</div>
+      </div>
+      <div class="qplot">
+        <div class="vline"></div><div class="hline"></div>
+        <div class="qedge qtop">+ Rigor / criterio</div>
+        <div class="qedge qbot">− Rigor / criterio</div>
+        <div class="qedge qleft">− Actualidad de marca</div>
+        <div class="qedge qright">+ Actualidad de marca</div>
+        <div class="qquad" style="top:9px; left:10px;">Rigor anticuado</div>
+        <div class="qquad" style="top:9px; right:10px;">Referente moderno</div>
+        <div class="qquad" style="bottom:9px; left:10px;">Ni rigor ni frescura</div>
+        <div class="qquad" style="bottom:9px; right:10px;">Moderna sin fondo</div>
+        <div class="qnode objetivo" style="left:60%; top:14%;">Objetivo</div>
+        <div class="qnode" style="left:78%; top:18%;">IVB</div>
+        <div class="qnode" style="left:14%; top:22%;">Lamberts</div>
+        <div class="qnode" style="left:42%; top:34%;">Nutergia</div>
+        <div class="qnode" style="left:66%; top:40%;">Algemica</div>
+        <div class="qnode" style="left:80%; top:46%;">Be Levels</div>
+        <div class="qnode" style="left:26%; top:48%;">A.M. Lajusticia</div>
+        <div class="qnode solaray" style="left:52%; top:52%;">Solaray <small>hoy</small></div>
+        <div class="qnode" style="left:82%; top:58%;">Kobho</div>
+        <div class="qnode" style="left:33%; top:63%;">Solgar</div>
+        <div class="qnode" style="left:46%; top:66%;">Nutralie</div>
+        <div class="qnode" style="left:40%; top:74%;">Arkopharma</div>
+        <div class="qnode" style="left:85%; top:74%;">Superlativa</div>
+      </div>
+    </div>
+    <p class="note">Posicionamiento cualitativo estimado a partir del análisis de la matriz (§1); no es una métrica.</p>
+    <div class="insight-box">La marca ganadora combina <strong>rigor y actualidad</strong> (arriba-derecha): hoy solo IVB se acerca. Las modernas (Superlativa, Kobho) pierden rigor; las rigurosas legacy (Lamberts, A.M. Lajusticia) pierden frescura. Solaray puede reclamar el centro-alto: ciencia seria contada de forma actual.</div>
   </div>
 
   <!-- SECTION 2 — FICHAS -->

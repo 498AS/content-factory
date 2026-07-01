@@ -77,6 +77,24 @@
     .footer-info strong { color: #666; }
     .footer-note { margin-top: 20px; padding-top: 10px; font-size: 8pt; color: #999; text-align: center; }
     .footer-note .internal { font-size: 7pt; }
+    .qmap { margin: 22px 0 30px; page-break-inside: avoid; }
+    .qmap-head { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:12px; gap:18px; }
+    .qmap-title { font-size:14pt; font-weight:700; line-height:1.15; letter-spacing:-0.3px; }
+    .qmap-axes { font-size:7.5pt; text-transform:uppercase; letter-spacing:1px; color:#999; text-align:right; line-height:1.5; white-space:nowrap; }
+    .qplot { position:relative; height:420px; border:1.5px solid #1a1a1a; background:#fff; }
+    .qplot .vline { position:absolute; left:50%; top:0; bottom:0; width:1px; background:#dcdcdc; }
+    .qplot .hline { position:absolute; top:50%; left:0; right:0; height:1px; background:#dcdcdc; }
+    .qplot .qedge { position:absolute; font-size:7pt; font-weight:700; letter-spacing:1px; color:#9a9a9a; text-transform:uppercase; }
+    .qplot .qtop { top:6px; left:50%; transform:translateX(-50%); }
+    .qplot .qbot { bottom:6px; left:50%; transform:translateX(-50%); }
+    .qplot .qleft { left:6px; top:50%; transform:translateY(-50%); writing-mode:vertical-rl; }
+    .qplot .qright { right:6px; top:50%; transform:translateY(-50%); writing-mode:vertical-rl; }
+    .qplot .qquad { position:absolute; font-size:6.8pt; color:#cbcbcb; text-transform:uppercase; letter-spacing:1px; }
+    .qnode { position:absolute; transform:translate(-50%,-50%); background:#fff; border:1px solid #ececec; border-radius:16px; box-shadow:0 1px 5px rgba(0,0,0,0.14); padding:5px 11px; font-size:8pt; font-weight:700; white-space:nowrap; color:#1a1a1a; }
+    .qnode small { font-weight:400; color:#999; font-size:6.5pt; letter-spacing:0.5px; text-transform:uppercase; }
+    .qnode.solaray { background:#ffdd33; border-color:#e0be2e; box-shadow:0 2px 7px rgba(210,170,20,0.45); }
+    .qnode.solaray small { color:#7a6410; }
+    .qnode.objetivo { background:#0a0a0a; color:#fff; font-weight:800; letter-spacing:1.5px; border-color:#0a0a0a; text-transform:uppercase; }
     @media print { body { padding: 0; } .section { page-break-inside: avoid; } }
   </style>
 </head>
@@ -161,6 +179,38 @@
     <div class="insight-box">El engagement es bajo en todo el sector (mediana ≈ 0,2%). Más seguidores no significa más comunidad: Be Levels (178K) genera menos interacción relativa que Nutergia (12K). El tamaño de la audiencia y su implicación están desacoplados.</div>
     <div class="insight-box">IVB destaca con escala: 0,53% de engagement, el doble que el siguiente competidor, sobre 131K seguidores. Es la única marca que apoya su comunicación en una figura experta reconocible y la que mejor convierte volumen en comunidad.</div>
     <div class="insight-box">Calidad de audiencia (credibilidad Kolsquare): la mayoría se mueve en un rango sano del 78%-84%. La excepción es Superlativa (60,1%, puntuación media): cerca del 40% de su audiencia es dudosa, lo que explica su bajo engagement pese al volumen y su fuerte TikTok.</div>
+  </div>
+
+  <!-- ====== MAPA COMPETITIVO ====== -->
+  <div class="section" style="page-break-inside:avoid;">
+    <div class="qmap">
+      <div class="qmap-head">
+        <div class="qmap-title">Mapa competitivo ·<br>Comunidad × Engagement</div>
+        <div class="qmap-axes">Seguidores IG (X)<br>× Engagement rate (Y)</div>
+      </div>
+      <div class="qplot">
+        <div class="vline"></div><div class="hline"></div>
+        <div class="qedge qtop">+ Engagement</div>
+        <div class="qedge qbot">− Engagement</div>
+        <div class="qedge qleft">− Comunidad</div>
+        <div class="qedge qright">+ Comunidad</div>
+        <div class="qquad" style="top:9px; left:10px;">Nicho muy activo</div>
+        <div class="qquad" style="top:9px; right:10px;">Líderes</div>
+        <div class="qquad" style="bottom:9px; left:10px;">Por despegar</div>
+        <div class="qquad" style="bottom:9px; right:10px;">Comunidad dormida</div>
+        <div class="qnode solaray" style="left:28%; top:14%;">Solaray <small>hoy</small></div>
+        <div class="qnode objetivo" style="left:80%; top:20%;">Objetivo</div>
+        <div class="qnode" style="left:74%; top:34%;">IVB</div>
+        <div class="qnode" style="left:42%; top:50%;">Arkopharma</div>
+        <div class="qnode" style="left:72%; top:58%;">A.M. Lajusticia</div>
+        <div class="qnode" style="left:16%; top:58%;">Nutergia</div>
+        <div class="qnode" style="left:88%; top:66%;">Be Levels</div>
+        <div class="qnode" style="left:60%; top:72%;">Superlativa</div>
+        <div class="qnode" style="left:46%; top:82%;">Solgar</div>
+      </div>
+    </div>
+    <p class="note">Solo las 7 marcas con engagement disponible en Kolsquare + Solaray. Kobho, Nutralie, Lamberts y Algemica quedan fuera (sin ER). Solaray: engagement estimado sobre la mediana de interacciones (~0,8%), por encima del líder medido del set (IVB, 0,53%).</p>
+    <div class="insight-box">Solaray juega en el cuadrante bueno: comunidad pequeña pero la <strong>más activa</strong> del set. El objetivo es moverse a la derecha —ganar tamaño sin perder engagement—, el territorio que hoy solo roza IVB.</div>
   </div>
 
   <!-- ====== SECTION 3 ====== -->
