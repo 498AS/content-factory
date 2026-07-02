@@ -53,11 +53,10 @@ section.slide{min-height:100vh;height:100vh;scroll-snap-align:start;scroll-snap-
 .brand-info .kpis .kpi .l{font-size:11px;letter-spacing:.08em;color:var(--grey-3);margin-top:6px;line-height:1.3;text-transform:uppercase;font-weight:500}
 .brand-info .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:30px}
 .brand-info .chips span{font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:5px 11px;border:1px solid var(--line);color:var(--grey-3)}
-.brand-hero{position:relative;background:var(--grey);overflow:hidden;height:min(72vh,600px)}
-.brand-hero img{width:100%;height:100%;object-fit:contain;background:#0d0d0d}.brand-hero video{width:100%;height:100%;object-fit:contain;background:#0d0d0d}
-.brand-hero.contain img,.brand-hero.contain video{object-fit:contain;background:#f2f2f2}
+.brand-hero{position:relative;background:none;display:flex;align-items:center;justify-content:center;height:auto}
+.brand-hero>img,.brand-hero>video{max-height:min(74vh,620px);max-width:100%;width:auto;height:auto;object-fit:contain;border-radius:5px;display:block}
+.brand-hero>.mjcar{position:relative;height:min(70vh,560px);aspect-ratio:4/5;width:auto;max-width:100%;border-radius:5px;overflow:hidden;background:none}
 .slide.brand{align-items:center}
-.brand-hero .mjcar{position:absolute;inset:0}
 .brand-info .via{display:inline-block;margin-top:22px;align-self:flex-start;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#8a5800;background:#fff6e6;border:1px solid #e8c84d;border-radius:20px;padding:4px 11px}
 .brand-hero.split{display:flex;gap:12px;background:#f2f2f2;align-items:center;justify-content:center;padding:14px}
 .brand-hero.split video{width:auto;max-width:52%;height:auto;max-height:100%;object-fit:contain;background:#0d0d0d}
