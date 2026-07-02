@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Zoopa · Síntesi benchmark Solaray</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--white:#fff;--black:#0a0a0a;--grey:#e8e8e8;--grey-2:#a8a8a8;--grey-3:#6e6e6e;--line:#dcdcdc;}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-snap-type:y mandatory;scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--white);color:var(--black);font-weight:400;font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+.top-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:18px 32px;mix-blend-mode:difference;color:var(--white);pointer-events:none}
+.top-nav .brand,.top-nav .counter{font-weight:600;letter-spacing:.18em;font-size:11px;text-transform:uppercase;font-variant-numeric:tabular-nums}
+section.slide{min-height:100vh;height:100vh;scroll-snap-align:start;scroll-snap-stop:always;padding:14vh 8vw 8vh;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.slide.cover{justify-content:center;align-items:flex-start}
+.slide.cover .kicker{font-size:11px;letter-spacing:.4em;text-transform:uppercase;font-weight:500;color:var(--grey-3);margin-bottom:30px}
+.slide.cover h1{font-size:clamp(56px,10vw,150px);font-weight:200;letter-spacing:-.04em;line-height:.95}
+.slide.cover h1 b{font-weight:800}
+.slide.cover .cover-logos{margin-top:auto;display:flex;align-items:center;gap:36px}
+.slide.cover .cover-logos .wordmark{font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--black)}
+.slide.divider{background:var(--black);color:var(--white);justify-content:center;align-items:center;text-align:center}
+.slide.divider .num{font-size:13px;letter-spacing:.4em;text-transform:uppercase;font-weight:500;color:#e8a400;margin-bottom:30px}
+.slide.divider h2{font-size:clamp(56px,10vw,150px);font-weight:200;letter-spacing:-.04em;line-height:.92}
+.slide.divider h2 b{font-weight:800}
+.slide.divider .lead{margin-top:30px;color:var(--grey-2);max-width:680px;font-size:16px;line-height:1.6}
+.slide.divider .sign{margin-top:40px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--grey-2)}
+.slide.proposal{justify-content:center}
+.slide.proposal .kicker{font-size:11px;letter-spacing:.4em;text-transform:uppercase;font-weight:600;color:var(--grey-3);margin-bottom:30px}
+.slide.proposal h2{font-size:clamp(44px,7vw,100px);font-weight:200;letter-spacing:-.04em;line-height:.95;margin-bottom:30px}
+.slide.proposal h2 b{font-weight:800}
+.slide.proposal .lead{font-size:18px;color:var(--grey-3);max-width:760px;margin-bottom:44px;line-height:1.5}
+.slide.proposal .pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;border-top:1px solid var(--line);padding-top:30px}
+.slide.proposal .pillars .p .num{font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:#b07400;font-weight:600;margin-bottom:14px}
+.slide.proposal .pillars .p h4{font-size:19px;font-weight:700;margin-bottom:10px}
+.slide.proposal .pillars .p p{font-size:13px;color:var(--grey-3);line-height:1.5}
+.slide.map{justify-content:center;padding:10vh 8vw 6vh}
+.slide.map .kicker{font-size:11px;letter-spacing:.4em;text-transform:uppercase;font-weight:600;color:var(--grey-3);margin-bottom:18px}
+.qmap{max-width:900px;width:100%;margin:0 auto}
+.qmap-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:14px;gap:20px}
+.qmap-title{font-size:24px;font-weight:800;letter-spacing:-.01em;line-height:1}
+.qmap-axes{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--grey-3);text-align:right;line-height:1.6}
+.qplot{position:relative;height:60vh;border:1.5px solid var(--black)}
+.qplot .vline{position:absolute;left:50%;top:0;bottom:0;width:1px;background:#e3e3e3}
+.qplot .hline{position:absolute;top:50%;left:0;right:0;height:1px;background:#e3e3e3}
+.qplot .qedge{position:absolute;font-size:9px;font-weight:700;letter-spacing:.1em;color:#9a9a9a;text-transform:uppercase}
+.qplot .qtop{top:8px;left:50%;transform:translateX(-50%)}
+.qplot .qbot{bottom:8px;left:50%;transform:translateX(-50%)}
+.qplot .qleft{left:8px;top:50%;transform:translateY(-50%);writing-mode:vertical-rl}
+.qplot .qright{right:8px;top:50%;transform:translateY(-50%);writing-mode:vertical-rl}
+.qplot .qquad{position:absolute;font-size:9px;color:#cbcbcb;text-transform:uppercase;letter-spacing:.1em}
+.qnode{position:absolute;transform:translate(-50%,-50%);background:#fff;border:1px solid #ececec;border-radius:20px;box-shadow:0 2px 9px rgba(0,0,0,.13);padding:6px 13px;font-size:12px;font-weight:700;white-space:nowrap;color:var(--black)}
+.qnode small{font-weight:400;color:#999;font-size:9px;letter-spacing:.05em;text-transform:uppercase}
+.qnode.solaray{background:#ffdd33;border-color:#e0be2e}
+.qnode.objetivo{background:#0a0a0a;color:#fff;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.mapnote{font-size:11px;color:var(--grey-3);text-align:center;margin-top:12px}
+.slide.tbl{justify-content:center}
+.slide.tbl .kicker{font-size:11px;letter-spacing:.4em;text-transform:uppercase;font-weight:600;color:var(--grey-3);margin-bottom:26px}
+.slide.tbl h2{font-size:clamp(32px,4.6vw,64px);font-weight:200;letter-spacing:-.03em;line-height:.95;margin-bottom:22px}
+.slide.tbl h2 b{font-weight:800}
+.dtable{width:100%;max-width:920px;border-collapse:collapse;font-size:15px}
+.dtable th{text-align:left;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--grey-3);font-weight:600;padding:0 14px 12px;border-bottom:1px solid var(--black)}
+.dtable td{padding:12px 14px;border-bottom:1px solid var(--line);font-weight:500}
+.dtable td.b{font-weight:700}
+.dtable .eng{font-weight:800;font-variant-numeric:tabular-nums}
+.dtable tr.sol td{background:#fffbe9}
+.dtable .star{color:#b07400}
+.slide :is(h1,h2,p,.kicker,.lead,.num,.pillar,.sign){opacity:0;transform:translateY(20px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1)}
+.slide.in :is(h1,h2,p,.kicker,.lead,.num,.pillar,.sign){opacity:1;transform:none}
+.slide.in h2{transition-delay:.12s}.slide.in .lead,.slide.in p{transition-delay:.28s}.slide.in .pillars{transition-delay:.4s}
+@media (prefers-reduced-motion:reduce){.slide :is(h1,h2,p,.kicker,.lead,.num,.pillar,.sign){opacity:1!important;transform:none!important}}
+@media(max-width:880px){html{scroll-snap-type:none}section.slide{height:auto;min-height:100vh;padding:90px 24px 40px}.slide.proposal .pillars{grid-template-columns:1fr 1fr}.qplot{height:70vh}}
+</style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <div class="brand">ZOOPA · SOLARAY · BENCHMARK</div>
+  <div class="counter"><span id="cur">01</span> / <span id="total">00</span></div>
+</nav>
+
+<main>
+
+<!-- COVER -->
+<section class="slide cover">
+  <span class="kicker">Síntesi · Solaray · 2026</span>
+  <h1><span style="font-weight:200">Benchmark</span><br><b>competitiu.</b></h1>
+  <div class="cover-logos"><span class="wordmark">Zoopa · The Smart Agency</span></div>
+</section>
+
+<!-- A QUI PARLEM -->
+<section class="slide proposal">
+  <span class="kicker">A qui parlem · l'audiència</span>
+  <h2>El vostre <b>públic.</b></h2>
+  <p class="lead">Els números grans són de <b>Solaray</b>; a sota, el context del <b>sector</b>.</p>
+  <div class="pillars">
+    <div class="p"><span class="num">Gènere · Solaray</span><h4>87% dones</h4><p>Sector: 68-94% femení. El públic masculí, sense amo.</p></div>
+    <div class="p"><span class="num">Edat · Solaray</span><h4>25-44</h4><p>Sector: mateix nucli en marques modernes; les legacy envelleixen.</p></div>
+    <div class="p"><span class="num">Ciutat · Solaray</span><h4>Barcelona · 11,8%</h4><p>Sector: triangle Barcelona-Madrid-València; ciutats mitjanes lliures.</p></div>
+    <div class="p"><span class="num">Qualitat · Solaray</span><h4>82,1% · sana</h4><p>Audiència real, no comprada (sector 78-88%). El cas a evitar: Superlativa (60%).</p></div>
+  </div>
+</section>
+
+<!-- STAT -->
+<section class="slide divider">
+  <span class="num">Benchmark 01 · Quantitatiu</span>
+  <h2><span style="font-weight:200">El sector</span><br><b>dorm.</b></h2>
+  <p class="lead">Engagement medià del sector ≈ 0,23%: comunitats enormes però adormides. Solaray, en canvi, té una de les comunitats <b style="color:#fff">més actives</b> —2a del benchmark (1,42%)—. El vostre repte no és la comunitat, ja la teniu: és l'<b style="color:#fff">abast i la notorietat</b>.</p>
+</section>
+
+<!-- MAP 1 -->
+<section class="slide map">
+  <span class="kicker">Benchmark quantitatiu · mapa</span>
+  <div class="qmap">
+    <div class="qmap-head"><div class="qmap-title">Comunitat × Engagement</div><div class="qmap-axes">Seguidors IG (X)<br>Engagement (Y)</div></div>
+    <div class="qplot">
+      <div class="vline"></div><div class="hline"></div>
+      <div class="qedge qtop">+ Engagement</div><div class="qedge qbot">− Engagement</div><div class="qedge qleft">− Comunitat</div><div class="qedge qright">+ Comunitat</div>
+      <div class="qquad" style="top:12px;left:12px">Nínxol molt actiu</div><div class="qquad" style="top:12px;right:12px">Líders</div><div class="qquad" style="bottom:12px;left:12px">Per enlairar</div><div class="qquad" style="bottom:12px;right:12px">Comunitat adormida</div>
+      <div class="qnode" style="left:22%;top:9%">Lamberts</div>
+      <div class="qnode solaray" style="left:32%;top:17%">Solaray <small>avui</small></div>
+      <div class="qnode" style="left:12%;top:25%">Algémica</div>
+      <div class="qnode objetivo" style="left:80%;top:22%">Objectiu</div>
+      <div class="qnode" style="left:74%;top:46%">IVB</div>
+      <div class="qnode" style="left:45%;top:55%">Arkopharma</div>
+      <div class="qnode" style="left:71%;top:61%">A.M. Lajusticia</div>
+      <div class="qnode" style="left:15%;top:63%">Nutergia</div>
+      <div class="qnode" style="left:30%;top:72%">Nutralie</div>
+      <div class="qnode" style="left:89%;top:64%">Be Levels</div>
+      <div class="qnode" style="left:61%;top:68%">Superlativa</div>
+      <div class="qnode" style="left:49%;top:74%">Solgar</div>
+      <div class="qnode" style="left:76%;top:75%">Kobho</div>
+    </div>
+    <p class="mapnote">Les 12 marques del sector (incl. Solaray). L'engagement alt viu en comptes petits (Lamberts, Algémica); entre els grans, IVB lidera. Objectiu: guanyar abast sense perdre engagement.</p>
+  </div>
+</section>
+
+<!-- TAULA · DADES -->
+<section class="slide tbl">
+  <span class="kicker">Benchmark quantitatiu · dades</span>
+  <h2>El rànquing <b>d'engagement.</b></h2>
+  <table class="dtable" style="font-size:12.5px">
+    <tr><th>Marca</th><th>Seguidors IG</th><th>Engagement</th></tr>
+    <tr><td class="b">Lamberts</td><td>12,7K</td><td class="eng">1,74%</td></tr>
+    <tr class="sol"><td class="b">Solaray ★</td><td>24,4K</td><td class="eng">1,42% <span class="star">★</span></td></tr>
+    <tr><td class="b">Algémica</td><td>7,7K</td><td class="eng">1,18%</td></tr>
+    <tr><td class="b">IVB</td><td>131K</td><td class="eng">0,53%</td></tr>
+    <tr><td class="b">Arkopharma</td><td>51K</td><td class="eng">0,31%</td></tr>
+    <tr><td class="b">A.M. Lajusticia</td><td>128K</td><td class="eng">0,24%</td></tr>
+    <tr><td class="b">Nutergia</td><td>12,2K</td><td class="eng">0,23%</td></tr>
+    <tr><td class="b">Be Levels</td><td>178K</td><td class="eng">0,18%</td></tr>
+    <tr><td class="b">Nutralie</td><td>12K</td><td class="eng">0,15%</td></tr>
+    <tr><td class="b">Superlativa</td><td>102K</td><td class="eng">0,12%</td></tr>
+    <tr><td class="b">Solgar</td><td>63K</td><td class="eng">0,08%</td></tr>
+    <tr><td class="b">Kobho</td><td>121K</td><td class="eng">0,06%</td></tr>
+  </table>
+  <p class="mapnote" style="text-align:left;max-width:920px;margin-top:14px">Ordenat per engagement (les 12 marques). L'engagement és estructuralment més alt en comptes petits (Lamberts, Algémica); entre els grans (>100K), <b>IVB (0,53%) lidera</b>. Solaray, <b>2a del benchmark</b> (1,42%), amb credibilitat sana (82,1%). <em>Nota: Lamberts és perfil ibèric (ES+PT) i A.M. Lajusticia inclou audiència llatinoamericana.</em></p>
+</section>
+
+<!-- INSIGHT -->
+<section class="slide divider">
+  <span class="num">Benchmark 02 · Qualitatiu</span>
+  <h2><span style="font-weight:200">El centre</span><br><b>és vostre.</b></h2>
+  <p class="lead">El sector està partit entre el <b style="color:#fff">clínic-avorrit</b> i el <b style="color:#fff">premium-fred</b>. Ningú ocupa el mig: ciència amb criteri i proximitat. I IVB, l'única que combina escala + engagement, ho aconsegueix amb una <b style="color:#fff">cara experta</b>. La palanca a replicar —en el nostre cas, repartida en un <b style="color:#fff">equip reduït</b>, no una sola cara—.</p>
+</section>
+
+<!-- MAP 2 -->
+<section class="slide map">
+  <span class="kicker">Benchmark qualitatiu · mapa</span>
+  <div class="qmap">
+    <div class="qmap-head"><div class="qmap-title">Autoritat × Desig</div><div class="qmap-axes">Autoritat experta (Y)<br>Desig i comunitat (X)</div></div>
+    <div class="qplot">
+      <div class="vline"></div><div class="hline"></div>
+      <div class="qedge qtop">+ Autoritat experta</div><div class="qedge qbot">− Autoritat experta</div><div class="qedge qleft">− Desig i comunitat</div><div class="qedge qright">+ Desig i comunitat</div>
+      <div class="qquad" style="top:12px;left:12px">Autoritat sense tirada</div><div class="qquad" style="top:12px;right:12px">Referents desitjables</div><div class="qquad" style="bottom:12px;left:12px">Genèriques</div><div class="qquad" style="bottom:12px;right:12px">Imatge sense aval</div>
+      <div class="qnode objetivo" style="left:60%;top:12%">Objectiu</div>
+      <div class="qnode" style="left:78%;top:20%">IVB</div>
+      <div class="qnode" style="left:44%;top:26%">A.M. Lajusticia</div>
+      <div class="qnode" style="left:80%;top:36%">Be Levels</div>
+      <div class="qnode" style="left:16%;top:40%">Lamberts</div>
+      <div class="qnode" style="left:36%;top:47%">Nutergia</div>
+      <div class="qnode solaray" style="left:52%;top:44%">Solaray <small>avui</small></div>
+      <div class="qnode" style="left:68%;top:54%">Algémica</div>
+      <div class="qnode" style="left:42%;top:58%">Solgar</div>
+      <div class="qnode" style="left:25%;top:62%">Nutralie</div>
+      <div class="qnode" style="left:82%;top:68%">Superlativa</div>
+      <div class="qnode" style="left:66%;top:72%">Kobho</div>
+      <div class="qnode" style="left:34%;top:76%">Arkopharma</div>
+    </div>
+    <p class="mapnote">Lectura qualitativa a partir de l'anàlisi del feed de cada marca.</p>
+  </div>
+</section>
+
+<!-- TAULA · QUALITATIVA -->
+<section class="slide tbl">
+  <span class="kicker">Benchmark qualitatiu · dades</span>
+  <h2>Com <b>comuniquen.</b></h2>
+  <table class="dtable" style="font-size:12px">
+    <tr><th>Marca</th><th>Estètica</th><th>To</th></tr>
+    <tr><td class="b">Lamberts</td><td>Clínica blava, datada</td><td>Clínic, informatiu, B2B</td></tr>
+    <tr class="sol"><td class="b">Solaray ★</td><td>Mixta + UGC (groc de marca)</td><td>Accessible, educatiu, proper</td></tr>
+    <tr><td class="b">Algémica</td><td>Cos real, relatable</td><td>Proper, body-aware (PNI)</td></tr>
+    <tr><td class="b">IVB</td><td>Científic / infogràfic</td><td>Rigorós, autoritat</td></tr>
+    <tr><td class="b">Arkopharma</td><td>Verd / plantes, mass-market</td><td>Pràctic, problema-solució</td></tr>
+    <tr><td class="b">A.M. Lajusticia</td><td>Heritage + fundadora</td><td>Càlid, de llegat</td></tr>
+    <tr><td class="b">Nutergia</td><td>Natural + científic suau</td><td>Herbolària + concepte NCA</td></tr>
+    <tr><td class="b">Be Levels</td><td>Editorial premium</td><td>Científic-aspiracional</td></tr>
+    <tr><td class="b">Nutralie</td><td>Comercial / e-commerce</td><td>Accessible, de benefici</td></tr>
+    <tr><td class="b">Superlativa</td><td>Fashion / lifestyle</td><td>Cool, urbà, aspiracional</td></tr>
+    <tr><td class="b">Solgar</td><td>Heritage suau / or (dispersa)</td><td>Autoritat + modernització</td></tr>
+    <tr><td class="b">Kobho</td><td>Càlida (packaging)</td><td>Aspiracional, de resultats</td></tr>
+  </table>
+  <p class="mapnote" style="text-align:left;max-width:920px;margin-top:16px">El sector es parteix entre el clínic-avorrit i el premium-fred; poques marques tenen una estètica pròpia memorable.</p>
+</section>
+
+<!-- OPORTUNITATS -->
+<section class="slide proposal">
+  <span class="kicker">03 · On hi ha aire</span>
+  <h2>Els buits <b>del sector.</b></h2>
+  <p class="lead">Els espais que la competència no cobreix —i on Solaray pot atacar.</p>
+  <div class="pillars">
+    <div class="p"><span class="num">Canal</span><h4>TikTok</h4><p>Competència feble o absent. És on hi ha aire i públic jove.</p></div>
+    <div class="p"><span class="num">Públic</span><h4>L'home</h4><p>68-94% dones a tot el sector. Ningú treballa el públic masculí.</p></div>
+    <div class="p"><span class="num">Palanca</span><h4>Equip expert</h4><p>El que fa líder IVB, però repartit: un equip reduït (3-4) que va rotant, no una sola cara.</p></div>
+    <div class="p"><span class="num">Geografia</span><h4>Fora del triangle</h4><p>Tothom satura Barcelona-Madrid. València i ciutats mitjanes, lliures.</p></div>
+  </div>
+</section>
+
+</main>
+
+<script>
+const slides=document.querySelectorAll('section.slide');
+const total=slides.length;
+document.getElementById('total').textContent=String(total).padStart(2,'0');
+const elCur=document.getElementById('cur');
+function upd(){const vh=window.innerHeight;const i=Math.round(window.scrollY/vh);elCur.textContent=String(Math.min(i+1,total)).padStart(2,'0');}
+window.addEventListener('scroll',upd,{passive:true});window.addEventListener('resize',upd);upd();
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&e.intersectionRatio>=0.4)e.target.classList.add('in')}),{threshold:[0.4,0.6,0.8]});
+slides.forEach(s=>io.observe(s));if(slides[0])slides[0].classList.add('in');
+document.addEventListener('keydown',e=>{if(e.target.matches('input,textarea,select'))return;const vh=window.innerHeight;const c=Math.round(window.scrollY/vh);let n=c;if(e.key==='ArrowDown'||e.key==='PageDown'||e.key===' '){e.preventDefault();n=Math.min(c+1,total-1);}else if(e.key==='ArrowUp'||e.key==='PageUp'){e.preventDefault();n=Math.max(c-1,0);}else if(e.key==='Home'){e.preventDefault();n=0;}else if(e.key==='End'){e.preventDefault();n=total-1;}else return;slides[n].scrollIntoView({behavior:'smooth',block:'start'});});
+</script>
+</body>
+</html>
