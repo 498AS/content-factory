@@ -12,6 +12,16 @@
 
 Es parte del stack [GEORadar](https://georadar.app) (DOC · S.A.M. · LEO) que ofrecemos a clientes empresariales para construir presencia editorial coherente en LLMs y buscadores.
 
+## No confundir con `linkedin-profile-optimizer`
+
+Este skill produce **contenido** (posts, artículos, hilos) para 35+ plataformas, LinkedIn incluida. Su hermano [`linkedin-profile-optimizer`](https://github.com/498AS/linkedin-profile-optimizer) trabaja sobre **el activo**: audita y reescribe perfiles individuales y Pages de empresa (headline, About, experiencia, tagline), planifica SSI/ads/advocacy y estudia afinidad con perfiles objetivo.
+
+| Necesitas… | Usa |
+|------------|-----|
+| Redactar un post/artículo/hilo para LinkedIn (u otro canal) | **`content-factory`** (este repo) |
+| Optimizar o auditar un perfil o una Company Page de LinkedIn | [`linkedin-profile-optimizer`](https://github.com/498AS/linkedin-profile-optimizer) |
+| Plan de personal branding, social selling, afinidad con un perfil objetivo | [`linkedin-profile-optimizer`](https://github.com/498AS/linkedin-profile-optimizer) |
+
 ## Cómo se usa
 
 ### Instalación

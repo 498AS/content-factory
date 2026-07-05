@@ -6,6 +6,9 @@ description: |
   generacion de outputs y revision ortografica/estilo.
   Triggers: "content-factory", "launch", "lanzar proyecto", "generar contenido", "writerbatch",
   "publicar contenido", "content batch", "/content-factory".
+  NO usar para optimizar/auditar un PERFIL o Company Page de LinkedIn (headline, About,
+  experiencia, tagline, SSI, afinidad con perfiles objetivo): para eso usar `linkedin-profile-optimizer`.
+  Este skill genera CONTENIDO (posts, articulos, hilos), no trabaja sobre el activo perfil/Page.
 ---
 
 # Skill: Content Factory — WriterBatch Zoopa
