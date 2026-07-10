@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professionals que parlen de suplements · Seeding Solaray</title>
+  <style>
+    @page {
+      size: A4; margin: 2cm 1.5cm 2cm 1.5cm;
+      @top-left { content: string(doc-title); font-family: 'Georgia', serif; font-size: 8pt; color: #888; margin-bottom: 5mm; }
+      @top-right { content: string(doc-section); font-family: 'Georgia', serif; font-size: 8pt; color: #888; margin-bottom: 5mm; }
+      @bottom-center { content: "Pàgina " counter(page) " de " counter(pages); font-family: 'Georgia', serif; font-size: 8pt; color: #999; margin-top: 5mm; }
+      @bottom-right { content: "zoopa"; font-family: 'Georgia', serif; font-size: 7pt; color: #bbb; margin-top: 5mm; }
+    }
+    @page :first { @top-left { content: ""; } @top-right { content: ""; } @bottom-center { content: ""; } @bottom-right { content: ""; } }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Georgia', serif; font-size: 11pt; line-height: 1.5; color: #1a1a1a; background: #fff; max-width: 210mm; margin: 0 auto; padding: 40px; string-set: doc-title attr(data-title); }
+    .cover { page-break-after: always; min-height: 90vh; display: flex; flex-direction: column; justify-content: space-between; padding: 60px 20px 40px; }
+    .cover-eyebrow { font-size: 10pt; text-transform: uppercase; letter-spacing: 2px; color: #666; margin-bottom: 30px; }
+    .cover h1 { font-size: 40pt; font-weight: 400; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 20px; max-width: 95%; }
+    .cover-subtitle { font-size: 15pt; font-style: italic; color: #555; max-width: 88%; margin-bottom: 40px; line-height: 1.4; }
+    .cover-footer { display: flex; justify-content: space-between; align-items: flex-end; padding-top: 30px; border-top: 1px solid #ccc; font-size: 10pt; }
+    .cover-author strong { display: block; font-size: 12pt; margin-bottom: 3px; }
+    .cover-date { text-align: right; color: #666; }
+    .cover-brand { font-size: 9pt; font-weight: 700; letter-spacing: 1.5px; color: #000; margin-top: 4px; }
+    .cover-logo svg { height: 22px; width: auto; margin-top: 6px; }
+    .footer-logo svg { height: 30px; width: auto; display: block; margin-bottom: 16px; }
+    .exec-summary { background: #f3f3f3; padding: 25px 30px; margin-bottom: 35px; border-radius: 2px; }
+    .exec-summary h2 { font-size: 10pt; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 14px; font-weight: 700; color: #000; }
+    .exec-summary p { font-size: 11pt; margin-bottom: 10px; }
+    .exec-summary strong { color: #b30000; }
+    .section { margin-bottom: 35px; page-break-inside: avoid; }
+    .section-header { display: flex; align-items: baseline; margin-bottom: 18px; border-bottom: 1px solid #ddd; padding-bottom: 10px; }
+    .section-number { font-size: 9pt; font-weight: 700; letter-spacing: 2px; color: #888; margin-right: 18px; text-transform: uppercase; }
+    .section-number::before { content: "§ "; color: #ccc; }
+    .section-title { font-size: 15pt; font-weight: 600; flex: 1; string-set: doc-section content(); }
+    .insight-box { background: #fef9ed; padding: 14px 18px; margin-bottom: 14px; font-size: 10pt; border-radius: 2px; }
+    .insight-box::before { content: "INSIGHT"; display: inline-block; font-size: 8pt; font-weight: 700; letter-spacing: 1.5px; color: #8a5800; background: #fff; padding: 2px 8px; margin-right: 10px; border-radius: 2px; }
+    table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 10pt; }
+    th { background: #1a1a1a; color: #fff; text-align: left; padding: 9px 12px; font-weight: 500; font-size: 9pt; text-transform: uppercase; letter-spacing: 0.5px; }
+    td { padding: 9px 12px; border-bottom: 1px solid #eaeaea; vertical-align: top; }
+    tr:nth-child(even) { background: #fafafa; }
+    .td-label { font-weight: 600; }
+    .mono { font-family: 'Consolas', monospace; }
+    .subhead { font-size: 11pt; font-weight: 700; margin: 18px 0 4px; color: #0a0a0a; }
+    .subhead .dot { display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:8px; vertical-align: middle; }
+    .legend { font-size: 8.5pt; color: #777; margin-top: 6px; }
+    .checklist { list-style:none; margin:6px 0 12px; }
+    .checklist li { margin-bottom:8px; font-size:10pt; }
+    footer { margin-top: 45px; padding-top: 25px; border-top: 2px solid #000; }
+    .footer-brands { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+    .footer-brand { font-size: 14pt; font-weight: 700; color: #000; }
+    .footer-brand-url { font-size: 9pt; color: #666; margin-left: 10px; }
+    .footer-info { display: flex; justify-content: space-between; font-size: 8pt; color: #999; }
+    .footer-info strong { color: #666; }
+    .footer-note { margin-top: 18px; padding-top: 10px; font-size: 8pt; color: #999; text-align: center; }
+    .footer-note .internal { font-size: 7pt; }
+    @media print { body { padding: 0; } .section { page-break-inside: avoid; } }
+      .mono a { color: inherit; text-decoration: none; }
+    .solution-box { background: #f0f8f0; padding: 14px 18px; margin-bottom: 14px; font-size: 10pt; border-radius: 2px; }
+    .solution-box::before { content: "RECOMANACIÓ"; display: inline-block; font-size: 8pt; font-weight: 700; letter-spacing: 1.5px; color: #1f6b1f; background: #fff; padding: 2px 8px; margin-right: 10px; border-radius: 2px; }
+  </style>
+</head>
+<body data-title="Professionals que parlen de suplements · Solaray">
+
+  <div class="cover">
+    <div>
+      <div class="cover-eyebrow">Solaray · Seeding de professionals</div>
+      <h1>Professionals que parlen de suplements</h1>
+      <div class="cover-subtitle">Psicòlegs, psiquiatres, fisios i perfils PNIE / integratius a Espanya que ja mencionen suplements al seu contingut. Candidats a seeding, trobats amb cerca directa a Instagram i verificació del contingut real.</div>
+    </div>
+    <div class="cover-footer">
+      <div class="cover-author">
+        <strong>Zoopa</strong>
+        <span>Equip de social i influència — Compte Solaray</span>
+      </div>
+      <div class="cover-date">
+        <div>Juliol 2026</div>
+        <div class="cover-logo"><svg viewBox="0 0 500 127.9" xmlns="http://www.w3.org/2000/svg"><g fill="#1D1D1B"><path d="M126.9,43.9H94V29.7h57.7v14.2L116.1,84h38.1v14.2H91.3V84L126.9,43.9z"/><path d="M164.6,49.1c1.7-4.5,4.1-8.2,7.1-11.4c3.1-3.1,6.8-5.6,11.1-7.3s9.2-2.6,14.5-2.6s10.3,0.9,14.6,2.6c4.4,1.7,8.1,4.1,11.2,7.3c3.1,3.1,5.5,6.9,7.1,11.4c1.7,4.5,2.5,9.4,2.5,14.9s-0.8,10.4-2.5,14.8s-4.1,8.2-7.1,11.3c-3.1,3.1-6.8,5.5-11.2,7.2s-9.2,2.5-14.6,2.5s-10.2-0.8-14.5-2.5s-8-4.1-11.1-7.2s-5.5-6.9-7.1-11.3c-1.7-4.4-2.5-9.3-2.5-14.8S162.9,53.6,164.6,49.1z M181.7,72c0.5,2.6,1.4,4.9,2.7,7s3,3.7,5.1,5c2.1,1.2,4.8,1.9,7.9,1.9c3.2,0,5.8-0.6,8-1.9c2.2-1.2,3.9-2.9,5.2-5s2.2-4.4,2.7-7s0.8-5.3,0.8-8c0-2.7-0.3-5.4-0.8-8.1c-0.5-2.6-1.4-5-2.7-7s-3-3.7-5.2-5s-4.8-1.9-8-1.9s-5.8,0.6-7.9,1.9c-2.1,1.3-3.8,2.9-5.1,5c-1.3,2-2.2,4.4-2.7,7s-0.8,5.3-0.8,8.1C180.9,66.7,181.1,69.4,181.7,72z"/><path d="M245.4,49.1c1.7-4.5,4.1-8.2,7.1-11.4c3.1-3.1,6.8-5.6,11.1-7.3c4.3-1.7,9.2-2.6,14.5-2.6c5.4,0,10.2,0.9,14.6,2.6s8.1,4.1,11.2,7.3c3.1,3.1,5.5,6.9,7.1,11.4c1.7,4.5,2.5,9.4,2.5,14.9s-0.8,10.4-2.5,14.8s-4.1,8.2-7.1,11.3c-3.1,3.1-6.8,5.5-11.2,7.2c-4.4,1.7-9.2,2.5-14.6,2.5s-10.2-0.8-14.5-2.5s-8-4.1-11.1-7.2s-5.5-6.9-7.1-11.3c-1.7-4.4-2.5-9.3-2.5-14.8S243.7,53.6,245.4,49.1z M262.5,72c0.5,2.6,1.4,4.9,2.7,7c1.3,2.1,3,3.7,5.1,5c2.1,1.2,4.8,1.9,7.9,1.9s5.8-0.6,8-1.9c2.2-1.2,3.9-2.9,5.2-5c1.3-2.1,2.2-4.4,2.7-7s0.8-5.3,0.8-8c0-2.7-0.3-5.4-0.8-8.1c-0.5-2.6-1.4-5-2.7-7c-1.3-2-3-3.7-5.2-5s-4.8-1.9-8-1.9s-5.8,0.6-7.9,1.9c-2.1,1.3-3.8,2.9-5.1,5c-1.3,2-2.2,4.4-2.7,7s-0.8,5.3-0.8,8.1C261.7,66.7,261.9,69.4,262.5,72z"/><path d="M343.7,29.7v8.7h0.3c2.3-3.7,5.2-6.4,8.7-8.1c3.5-1.7,7.4-2.5,11.6-2.5c5.4,0,10,1,13.9,3s7.1,4.7,9.7,8.1s4.5,7.3,5.7,11.7c1.2,4.5,1.9,9.1,1.9,14c0,4.6-0.6,9-1.9,13.2c-1.2,4.2-3.1,8-5.6,11.2c-2.5,3.3-5.6,5.9-9.4,7.8c-3.7,1.9-8.1,2.9-13.2,2.9c-4.2,0-8.1-0.9-11.7-2.6s-6.5-4.3-8.8-7.6h-0.3V122h-18.8V29.7H343.7z M368.1,84c2.1-1.2,3.7-2.8,5-4.8s2.2-4.3,2.7-6.9s0.8-5.3,0.8-8.1c0-2.7-0.3-5.4-0.9-8.1c-0.6-2.6-1.5-5-2.8-7.1s-3-3.7-5.1-5s-4.6-1.9-7.6-1.9c-3.1,0-5.7,0.6-7.7,1.9c-2.1,1.3-3.7,2.9-5,5c-1.3,2-2.2,4.4-2.7,7s-0.8,5.4-0.8,8.2c0,2.7,0.3,5.4,0.9,8.1c0.6,2.6,1.5,5,2.8,6.9c1.3,2,3,3.6,5.1,4.8c2.1,1.2,4.7,1.9,7.7,1.9C363.4,85.8,366,85.2,368.1,84z"/><path d="M405.8,50.8c0.3-4.4,1.4-8.1,3.3-11c1.9-2.9,4.4-5.2,7.4-7s6.4-3,10.1-3.8c3.7-0.7,7.5-1.1,11.3-1.1c3.4,0,6.9,0.2,10.4,0.7s6.7,1.4,9.7,2.8c2.9,1.4,5.3,3.4,7.1,5.9c1.9,2.5,2.8,5.8,2.8,10v35.6c0,3.1,0.2,6,0.5,8.9c0.4,2.8,1,4.9,1.9,6.3h-19c-0.4-1.1-0.6-2.1-0.9-3.2c-0.2-1.1-0.4-2.2-0.5-3.4c-3,3.1-6.5,5.2-10.6,6.5c-4.1,1.2-8.2,1.9-12.4,1.9c-3.3,0-6.3-0.4-9.1-1.2c-2.8-0.8-5.3-2-7.4-3.7s-3.8-3.8-5-6.3c-1.2-2.6-1.8-5.6-1.8-9.1c0-3.9,0.7-7.1,2-9.6c1.4-2.5,3.1-4.5,5.3-6c2.2-1.5,4.6-2.6,7.4-3.4c2.8-0.7,5.6-1.3,8.4-1.8c2.8-0.4,5.6-0.8,8.3-1.1c2.7-0.3,5.2-0.7,7.3-1.2c2.1-0.5,3.8-1.3,5-2.3s1.8-2.5,1.7-4.4c0-2-0.3-3.6-1-4.8s-1.5-2.1-2.6-2.8s-2.4-1.1-3.8-1.3c-1.5-0.2-3-0.3-4.7-0.3c-3.7,0-6.6,0.8-8.7,2.4c-2.1,1.6-3.4,4.2-3.7,7.9h-18.7V50.8z M449.2,64.6c-0.8,0.7-1.8,1.3-3,1.7c-1.2,0.4-2.5,0.7-3.8,1c-1.4,0.3-2.8,0.5-4.3,0.7s-3,0.4-4.5,0.7c-1.4,0.3-2.8,0.6-4.2,1.1c-1.4,0.4-2.6,1-3.6,1.8s-1.8,1.7-2.4,2.8c-0.6,1.1-0.9,2.6-0.9,4.4c0,1.7,0.3,3.1,0.9,4.2s1.5,2.1,2.5,2.7c1.1,0.7,2.3,1.1,3.7,1.4c1.4,0.3,2.9,0.4,4.4,0.4c3.7,0,6.6-0.6,8.6-1.9c2-1.2,3.5-2.7,4.5-4.4c1-1.7,1.6-3.5,1.8-5.2c0.2-1.8,0.3-3.2,0.3-4.2V64.6z"/><rect x="23.2" y="54.3" width="57.5" height="17.6"/></g></svg></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="exec-summary">
+    <h2>Resum executiu</h2>
+    <p><strong>Objectiu:</strong> identificar professionals de salut a Espanya que ja parlen de suplements de forma natural, per a seeding de Solaray (a nivell nacional, sense filtre de ciutat).</p>
+    <p><strong>Estrelles:</strong> Marián Rojas Estapé (psiquiatra, 4,6M), Fran Cuesta (327K, longevitat / biohacking), Antonio Valenzuela (PNI clínica, 158K), Uxoa Olaizola (farmacèutica, 115K) i Farmàcia Senante (106K, farmacèutic divulgador).</p>
+  </div>
+
+  <div class="section">
+    <div class="section-header"><div class="section-number">Secció 1</div><div class="section-title">Metodologia</div></div>
+    <ul class="checklist">
+      <li><strong>Descobriment:</strong> cerca directa a Instagram amb desenes de combinacions professió + suplement/angle (PNIE, salut hormonal, medicina integrativa, ortomolecular…).</li>
+      <li><strong>Verificació:</strong> per cada perfil, es va llegir la bio i els últims ~24 posts per confirmar que menciona suplements de veritat (no només que sigui sanitari).</li>
+      <li><strong>Suplements de referència:</strong> catàleg Solaray (magnesio, ashwagandha, omega, vit. D, colágeno, creatina, melatonina, cortisol/adaptògens, probiòtics, GABA…).</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-header"><div class="section-number">Secció 2</div><div class="section-title">Grans (més de 100K)</div></div>
+    <table>
+      <tr><th>Perfil</th><th>Handle</th><th>Perfil professional</th><th>Seguidors</th><th>Suplements que menciona</th></tr>
+      <tr><td class="td-label">Marián Rojas Estapé</td><td class="mono"><a href="https://www.instagram.com/marianrojasestape" target="_blank">@marianrojasestape</a></td><td>Psiquiatra</td><td>4,6M</td><td>cortisol (estrès / son)</td></tr>
+      <tr><td class="td-label">Xavi Cañellas</td><td class="mono"><a href="https://www.instagram.com/xavicanellas_oficial" target="_blank">@xavicanellas_oficial</a></td><td>PNI clínica / longevitat (formador)</td><td>487K</td><td>suplementos, omega, vit. D, probiòtics</td></tr>
+      <tr><td class="td-label">Fran Cuesta</td><td class="mono"><a href="https://www.instagram.com/longevizarte" target="_blank">@longevizarte</a></td><td>Coach salut i longevitat / biohacking</td><td>327K</td><td>suplementos, omega, vit. D, creatina</td></tr>
+      <tr><td class="td-label">Mateo Jaramillo</td><td class="mono"><a href="https://www.instagram.com/mateojaramil1" target="_blank">@mateojaramil1</a></td><td>Salut masculina / testosterona</td><td>175K</td><td>magnesio, ashwagandha, vit. D, zinc</td></tr>
+      <tr><td class="td-label">Antonio Valenzuela</td><td class="mono"><a href="https://www.instagram.com/antoniovalenzuelacanovaca" target="_blank">@antoniovalenzuelacanovaca</a></td><td>PNI clínica (autor)</td><td>158K</td><td>suplementos, probióticos, teanina</td></tr>
+      <tr><td class="td-label">Rubén Córdova</td><td class="mono"><a href="https://www.instagram.com/rubensaludyvida" target="_blank">@rubensaludyvida</a></td><td>PNI</td><td>146K</td><td>suplementos</td></tr>
+      <tr><td class="td-label">Uxoa Olaizola</td><td class="mono"><a href="https://www.instagram.com/uxoa.olaizola" target="_blank">@uxoa.olaizola</a></td><td>Farmacèutica / salut natural</td><td>115K</td><td>ashwagandha, adaptògens, cortisol, omega</td></tr>
+      <tr><td class="td-label">Farmàcia Senante</td><td class="mono"><a href="https://www.instagram.com/farmaciasenante" target="_blank">@farmaciasenante</a></td><td>Farmacèutic divulgador</td><td>106K</td><td>suplementos, omega, vit. D, creatina</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-header"><div class="section-number">Secció 3</div><div class="section-title">Mitjans (20–80K)</div></div>
+    <table>
+      <tr><th>Perfil</th><th>Handle</th><th>Perfil</th><th>Seguidors</th><th>Suplements</th></tr>
+      <tr><td class="td-label">Glòria Bartolomé</td><td class="mono"><a href="https://www.instagram.com/totssalutoficial" target="_blank">@totssalutoficial</a></td><td>Dietista funcional PNI / salut digestiva</td><td>80K</td><td>suplementos</td></tr>
+      <tr><td class="td-label">Pablo O'kuinghttons</td><td class="mono"><a href="https://www.instagram.com/puaom_" target="_blank">@puaom_</a></td><td>PNI ortomolecular</td><td>78K</td><td>omega</td></tr>
+      <tr><td class="td-label">Mari Carmen Comendador</td><td class="mono"><a href="https://www.instagram.com/mujerfertilbymaricarmen" target="_blank">@mujerfertilbymaricarmen</a></td><td>Salut hormonal femenina / fertilitat</td><td>53K</td><td>vit. D, melatonina, cortisol, inositol</td></tr>
+      <tr><td class="td-label">Jorge Marte</td><td class="mono"><a href="https://www.instagram.com/jorgemarte01" target="_blank">@jorgemarte01</a></td><td>Salut metabòlica / hàbits</td><td>51K</td><td>magnesio, melatonina, cortisol, maca</td></tr>
+      <tr><td class="td-label">Sandra Navarro</td><td class="mono"><a href="https://www.instagram.com/sandranavarro.pni" target="_blank">@sandranavarro.pni</a></td><td>PNI + psicòloga</td><td>22K</td><td>suplementos, cortisol</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-header"><div class="section-number">Secció 4</div><div class="section-title">Nínxol (menys de 10K)</div></div>
+    <table>
+      <tr><th>Perfil</th><th>Handle</th><th>Perfil</th><th>Seguidors</th><th>Suplements</th></tr>
+      <tr><td class="td-label">David Martínez</td><td class="mono"><a href="https://www.instagram.com/nutri_david_martinez" target="_blank">@nutri_david_martinez</a></td><td>Nutricionista clínic i esportiu</td><td>7,3K</td><td>suplementos</td></tr>
+      <tr><td class="td-label">Marta Jiménez</td><td class="mono"><a href="https://www.instagram.com/saludablementetu_martajim" target="_blank">@saludablementetu_martajim</a></td><td>Salut digestiva + PNI</td><td>6,2K</td><td>vit. D, melatonina, cortisol</td></tr>
+      <tr><td class="td-label">Ana Macías</td><td class="mono"><a href="https://www.instagram.com/anamaciassalud" target="_blank">@anamaciassalud</a></td><td>Fisio + PNI</td><td>3,8K</td><td>suplementos, vit. D</td></tr>
+      <tr><td class="td-label">Jesús Lloret</td><td class="mono"><a href="https://www.instagram.com/farmaceutico_deportivo" target="_blank">@farmaceutico_deportivo</a></td><td>Farmacèutic / nutrició esportiva</td><td>3,5K</td><td>magnesio, omega, vit. D, creatina, melatonina, glicina</td></tr>
+      <tr><td class="td-label">Lluís Ardiaca</td><td class="mono"><a href="https://www.instagram.com/lluisardiacasole" target="_blank">@lluisardiacasole</a></td><td>Salut hormonal i digestiva</td><td>3,4K</td><td>omega, melatonina, probiòtics, glicina, vit. C</td></tr>
+      <tr><td class="td-label">Natalia Pallarés</td><td class="mono"><a href="https://www.instagram.com/nataliazgz78" target="_blank">@nataliazgz78</a></td><td>Wellness dona 40+</td><td>3K</td><td>melatonina, cúrcuma, cortisol, zinc</td></tr>
+      <tr><td class="td-label">Uri García</td><td class="mono"><a href="https://www.instagram.com/urigarciadn" target="_blank">@urigarciadn</a></td><td>Nutrició esportiva</td><td>2,5K</td><td>suplementos, creatina</td></tr>
+      <tr><td class="td-label">Dr. Arrieta</td><td class="mono"><a href="https://www.instagram.com/metodoantifragil" target="_blank">@metodoantifragil</a></td><td>Salut masculina / TRT</td><td>2K</td><td>cortisol</td></tr>
+      <tr><td class="td-label">Beatriz Sala</td><td class="mono"><a href="https://www.instagram.com/beanutricioninteligente" target="_blank">@beanutricioninteligente</a></td><td>Farmacèutica + dietista integrativa</td><td>1,8K</td><td>suplementos, omega</td></tr>
+      <tr><td class="td-label">Cris</td><td class="mono"><a href="https://www.instagram.com/cris.respira" target="_blank">@cris.respira</a></td><td>Fisio PNI</td><td>1,8K</td><td>suplementos, GABA, cortisol</td></tr>
+      <tr><td class="td-label">María Yenes</td><td class="mono"><a href="https://www.instagram.com/salud_hormonal_mujer" target="_blank">@salud_hormonal_mujer</a></td><td>Salut hormonal / menopausa (encaix Stages)</td><td>850</td><td>colágeno, creatina, GABA, glicina, vit. C</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-header"><div class="section-number">Secció 5</div><div class="section-title">Esport / fitness</div></div>
+    <table>
+      <tr><th>Perfil</th><th>Handle</th><th>Disciplina</th><th>Seguidors</th><th>Angle Solaray</th></tr>
+      <tr><td class="td-label">Cesc Escolà</td><td class="mono"><a href="https://www.instagram.com/cescescola" target="_blank">@cescescola</a></td><td>Fitness trainer (TV) / workout home</td><td>330K</td><td>rendiment / recuperació (magnesi, omega, col·lagen)</td></tr>
+      <tr><td class="td-label">Ivo Potocnjak</td><td class="mono"><a href="https://www.instagram.com/ivoslav_" target="_blank">@ivoslav_</a></td><td>Boxa / entrenament</td><td>62K</td><td>recuperació / energia (magnesi, omega)</td></tr>
+      <tr><td class="td-label">Sandra Jordà Pascó</td><td class="mono"><a href="https://www.instagram.com/sjpasco" target="_blank">@sjpasco</a></td><td>BTT / Enduro (campiona)</td><td>60K</td><td>rendiment / recuperació (magnesi, vit. D)</td></tr>
+      <tr><td class="td-label">Nil Puchol</td><td class="mono"><a href="https://www.instagram.com/nilpuchol" target="_blank">@nilpuchol</a></td><td>Running / ciència de l'esport</td><td>53K</td><td>rendiment / recuperació (omega, magnesi)</td></tr>
+    </table>
+  </div>
+
+  <footer>
+    <div class="footer-logo"><svg viewBox="0 0 500 127.9" xmlns="http://www.w3.org/2000/svg"><g fill="#1D1D1B"><path d="M126.9,43.9H94V29.7h57.7v14.2L116.1,84h38.1v14.2H91.3V84L126.9,43.9z"/><path d="M164.6,49.1c1.7-4.5,4.1-8.2,7.1-11.4c3.1-3.1,6.8-5.6,11.1-7.3s9.2-2.6,14.5-2.6s10.3,0.9,14.6,2.6c4.4,1.7,8.1,4.1,11.2,7.3c3.1,3.1,5.5,6.9,7.1,11.4c1.7,4.5,2.5,9.4,2.5,14.9s-0.8,10.4-2.5,14.8s-4.1,8.2-7.1,11.3c-3.1,3.1-6.8,5.5-11.2,7.2s-9.2,2.5-14.6,2.5s-10.2-0.8-14.5-2.5s-8-4.1-11.1-7.2s-5.5-6.9-7.1-11.3c-1.7-4.4-2.5-9.3-2.5-14.8S162.9,53.6,164.6,49.1z M181.7,72c0.5,2.6,1.4,4.9,2.7,7s3,3.7,5.1,5c2.1,1.2,4.8,1.9,7.9,1.9c3.2,0,5.8-0.6,8-1.9c2.2-1.2,3.9-2.9,5.2-5s2.2-4.4,2.7-7s0.8-5.3,0.8-8c0-2.7-0.3-5.4-0.8-8.1c-0.5-2.6-1.4-5-2.7-7s-3-3.7-5.2-5s-4.8-1.9-8-1.9s-5.8,0.6-7.9,1.9c-2.1,1.3-3.8,2.9-5.1,5c-1.3,2-2.2,4.4-2.7,7s-0.8,5.3-0.8,8.1C180.9,66.7,181.1,69.4,181.7,72z"/><path d="M245.4,49.1c1.7-4.5,4.1-8.2,7.1-11.4c3.1-3.1,6.8-5.6,11.1-7.3c4.3-1.7,9.2-2.6,14.5-2.6c5.4,0,10.2,0.9,14.6,2.6s8.1,4.1,11.2,7.3c3.1,3.1,5.5,6.9,7.1,11.4c1.7,4.5,2.5,9.4,2.5,14.9s-0.8,10.4-2.5,14.8s-4.1,8.2-7.1,11.3c-3.1,3.1-6.8,5.5-11.2,7.2c-4.4,1.7-9.2,2.5-14.6,2.5s-10.2-0.8-14.5-2.5s-8-4.1-11.1-7.2s-5.5-6.9-7.1-11.3c-1.7-4.4-2.5-9.3-2.5-14.8S243.7,53.6,245.4,49.1z M262.5,72c0.5,2.6,1.4,4.9,2.7,7c1.3,2.1,3,3.7,5.1,5c2.1,1.2,4.8,1.9,7.9,1.9s5.8-0.6,8-1.9c2.2-1.2,3.9-2.9,5.2-5c1.3-2.1,2.2-4.4,2.7-7s0.8-5.3,0.8-8c0-2.7-0.3-5.4-0.8-8.1c-0.5-2.6-1.4-5-2.7-7c-1.3-2-3-3.7-5.2-5s-4.8-1.9-8-1.9s-5.8,0.6-7.9,1.9c-2.1,1.3-3.8,2.9-5.1,5c-1.3,2-2.2,4.4-2.7,7s-0.8,5.3-0.8,8.1C261.7,66.7,261.9,69.4,262.5,72z"/><path d="M343.7,29.7v8.7h0.3c2.3-3.7,5.2-6.4,8.7-8.1c3.5-1.7,7.4-2.5,11.6-2.5c5.4,0,10,1,13.9,3s7.1,4.7,9.7,8.1s4.5,7.3,5.7,11.7c1.2,4.5,1.9,9.1,1.9,14c0,4.6-0.6,9-1.9,13.2c-1.2,4.2-3.1,8-5.6,11.2c-2.5,3.3-5.6,5.9-9.4,7.8c-3.7,1.9-8.1,2.9-13.2,2.9c-4.2,0-8.1-0.9-11.7-2.6s-6.5-4.3-8.8-7.6h-0.3V122h-18.8V29.7H343.7z M368.1,84c2.1-1.2,3.7-2.8,5-4.8s2.2-4.3,2.7-6.9s0.8-5.3,0.8-8.1c0-2.7-0.3-5.4-0.9-8.1c-0.6-2.6-1.5-5-2.8-7.1s-3-3.7-5.1-5s-4.6-1.9-7.6-1.9c-3.1,0-5.7,0.6-7.7,1.9c-2.1,1.3-3.7,2.9-5,5c-1.3,2-2.2,4.4-2.7,7s-0.8,5.4-0.8,8.2c0,2.7,0.3,5.4,0.9,8.1c0.6,2.6,1.5,5,2.8,6.9c1.3,2,3,3.6,5.1,4.8c2.1,1.2,4.7,1.9,7.7,1.9C363.4,85.8,366,85.2,368.1,84z"/><path d="M405.8,50.8c0.3-4.4,1.4-8.1,3.3-11c1.9-2.9,4.4-5.2,7.4-7s6.4-3,10.1-3.8c3.7-0.7,7.5-1.1,11.3-1.1c3.4,0,6.9,0.2,10.4,0.7s6.7,1.4,9.7,2.8c2.9,1.4,5.3,3.4,7.1,5.9c1.9,2.5,2.8,5.8,2.8,10v35.6c0,3.1,0.2,6,0.5,8.9c0.4,2.8,1,4.9,1.9,6.3h-19c-0.4-1.1-0.6-2.1-0.9-3.2c-0.2-1.1-0.4-2.2-0.5-3.4c-3,3.1-6.5,5.2-10.6,6.5c-4.1,1.2-8.2,1.9-12.4,1.9c-3.3,0-6.3-0.4-9.1-1.2c-2.8-0.8-5.3-2-7.4-3.7s-3.8-3.8-5-6.3c-1.2-2.6-1.8-5.6-1.8-9.1c0-3.9,0.7-7.1,2-9.6c1.4-2.5,3.1-4.5,5.3-6c2.2-1.5,4.6-2.6,7.4-3.4c2.8-0.7,5.6-1.3,8.4-1.8c2.8-0.4,5.6-0.8,8.3-1.1c2.7-0.3,5.2-0.7,7.3-1.2c2.1-0.5,3.8-1.3,5-2.3s1.8-2.5,1.7-4.4c0-2-0.3-3.6-1-4.8s-1.5-2.1-2.6-2.8s-2.4-1.1-3.8-1.3c-1.5-0.2-3-0.3-4.7-0.3c-3.7,0-6.6,0.8-8.7,2.4c-2.1,1.6-3.4,4.2-3.7,7.9h-18.7V50.8z M449.2,64.6c-0.8,0.7-1.8,1.3-3,1.7c-1.2,0.4-2.5,0.7-3.8,1c-1.4,0.3-2.8,0.5-4.3,0.7s-3,0.4-4.5,0.7c-1.4,0.3-2.8,0.6-4.2,1.1c-1.4,0.4-2.6,1-3.6,1.8s-1.8,1.7-2.4,2.8c-0.6,1.1-0.9,2.6-0.9,4.4c0,1.7,0.3,3.1,0.9,4.2s1.5,2.1,2.5,2.7c1.1,0.7,2.3,1.1,3.7,1.4c1.4,0.3,2.9,0.4,4.4,0.4c3.7,0,6.6-0.6,8.6-1.9c2-1.2,3.5-2.7,4.5-4.4c1-1.7,1.6-3.5,1.8-5.2c0.2-1.8,0.3-3.2,0.3-4.2V64.6z"/><rect x="23.2" y="54.3" width="57.5" height="17.6"/></g></svg></div>
+    <div class="footer-note">
+      Document generat el juliol de 2026 · Professionals de salut que parlen de suplements — seeding Solaray<br>
+      <span class="internal">Document intern i confidencial — Zoopa · Client Solaray. No distribuir fora de l'equip.</span>
+    </div>
+  </footer>
+
+</body>
+</html>
