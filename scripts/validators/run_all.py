@@ -16,6 +16,7 @@ Output: warnings on stdout. Always exits 0 (advisory).
 
 Manual usage:
   python3 run_all.py /path/to/output/blog.md
+  python3 run_all.py "/ruta/498Adesign/blog/slug.html"   # blog 498advance.com
 """
 
 from __future__ import annotations
@@ -32,8 +33,9 @@ import validate_titles  # noqa: E402
 import validate_numbers  # noqa: E402
 import validate_catalan  # noqa: E402
 import validate_blog_completeness  # noqa: E402
+import validate_blog_498a  # noqa: E402
 
-OUTPUT_EXTS = {".md", ".txt"}
+OUTPUT_EXTS = {".md", ".txt", ".html"}
 
 
 def file_path_from_stdin() -> Path | None:
@@ -57,11 +59,19 @@ def is_target(path: Path) -> bool:
     if path.suffix.lower() not in OUTPUT_EXTS:
         return False
     parents = {p.name for p in path.parents}
+    if path.suffix.lower() == ".html":
+        # Posts del blog estatico de 498advance.com: 498Adesign/blog/*.html
+        # y 498Adesign/<lang>/blog/*.html. Tambien si se generan en output/.
+        return path.parent.name == "blog" or "output" in parents
     return "output" in parents
 
 
 def run(path: Path) -> list[str]:
     issues: list[str] = []
+    if path.suffix.lower() == ".html":
+        # Blog estatico de 498advance.com: maquetacion, schema y enlaces.
+        issues.extend(f"[blog498a] {it}" for it in validate_blog_498a.check_file(path))
+        return issues
     issues.extend(f"[titles] {it}" for it in validate_titles.check_file(path))
     issues.extend(f"[numbers] {it}" for it in validate_numbers.check_file(path))
     issues.extend(f"[catalan] {it}" for it in validate_catalan.check_file(path))

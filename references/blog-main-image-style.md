@@ -170,6 +170,6 @@ Cualquier nueva imagen principal de blog debe poderse colocar junto a estas dos 
 
 ## Referencias cruzadas
 
-- Script generador automatico: `/Users/cop/.claude/skills/content-factory/scripts/generate_blog_main_image.py`
-- Skill subyacente: `/Users/cop/.claude/skills/imagen/SKILL.md`
-- Reglas ortograficas globales: `/Users/cop/.claude/skills/content-factory/references/orthography-rules.md`
+- Script generador automatico: `/Users/carlos/.claude/skills/content-factory/scripts/generate_blog_main_image.py`
+- Skill subyacente: `/Users/carlos/.claude/skills/imagen/SKILL.md`
+- Reglas ortograficas globales: `/Users/carlos/.claude/skills/content-factory/references/orthography-rules.md`

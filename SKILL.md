@@ -1,9 +1,12 @@
 ---
 name: content-factory
 description: |
-  Genera contenido multicanal (hasta 35 canales, 4 idiomas) a partir de un source.md
+  Genera contenido multicanal (hasta 41 canales, 4 idiomas) a partir de un source.md
   usando el sistema WriterBatch Zoopa. Orquesta seleccion de canales, preguntas pre-publicacion,
   generacion de outputs y revision ortografica/estilo.
+  Cubre los dos blogs de la casa, que son tecnicamente distintos: el WordPress de zoopa.es
+  (Polylang + Rank Math) y el blog estatico de 498advance.com (Perspectivas: HTML con clases
+  de blog.css, plantilla con marcadores, schema a mano, cuatro idiomas con slug compartido).
   Triggers: "content-factory", "launch", "lanzar proyecto", "generar contenido", "writerbatch",
   "publicar contenido", "content batch", "/content-factory".
   NO usar para optimizar/auditar un PERFIL o Company Page de LinkedIn (headline, About,
@@ -26,12 +29,14 @@ Generar todos los outputs de contenido multicanal para un proyecto a partir de u
 | **Catalogo de canales** | `~/.claude/skills/content-factory/references/channel-catalog.md` |
 | **Reglas ortografia** | `~/.claude/skills/content-factory/references/orthography-rules.md` |
 | **Lecciones aprendidas** | `~/.claude/skills/content-factory/references/lessons-learned.md` |
-| **Componentes HTML para blogs** | `~/.claude/skills/content-factory/references/blog-html-components.md` |
+| **Componentes HTML para blogs WordPress · solo zoopa.es** | `~/.claude/skills/content-factory/references/blog-html-components.md` |
+| **Blog estático de 498advance.com (Perspectivas)** ⭐ | `~/.claude/skills/content-factory/references/blog-498advance-static.md` |
 | **Estructura del source.md (3-block brief)** ⭐ | `~/.claude/skills/content-factory/references/content-brief-structure.md` |
 | **Patrones editoriales (killer line, paradoja, "cuándo X suma")** ⭐ | `~/.claude/skills/content-factory/references/editorial-patterns.md` |
 | **Voz LinkedIn · Carlos Ortet (cuenta personal)** ⭐ | `~/.claude/skills/content-factory/references/linkedin-voice-carlos-ortet.md` |
 | **Estilo Substack (email + permalink, no blog)** ⭐ | `~/.claude/skills/content-factory/references/substack-style.md` |
 | **Voz X/Twitter (humano, no LLM)** ⭐ | `~/.claude/skills/content-factory/references/x-twitter-voice-style.md` |
+| **Humanize Text · Anti-AI Detection Guide** ⭐ | `~/.claude/skills/content-factory/references/humanize-text-anti-ai.md` |
 
 ⭐ = nuevos en mayo 2026. `linkedin-voice-carlos-ortet.md` es OBLIGATORIO leer y aplicar antes de redactar `linkedin.md` o `linkedin_ca.md` cuando el autor sea Carlos Ortet (cuenta personal). Captura las correcciones reales que aplicó al post "La siguiente bestIA" (2026-05-10): hook coloquial-irónico, conectores hablados, glosa parentética para audiencia mixta, auto-ironía, balance "soy pro-X pero...", pregunta abierta final, política estricta de anonimización (clientes con NDA → eliminar caso, no anonimizar a nivel sectorial), y otros patrones documentados.
 
@@ -39,14 +44,18 @@ Generar todos los outputs de contenido multicanal para un proyecto a partir de u
 
 `x-twitter-voice-style.md` es OBLIGATORIO leer y aplicar antes de redactar `x_twitter_ready.txt` y `threads_ready.txt` (mismas reglas de tono y cadencia). Captura los anti-patrones de IA detectables al instante (em-dashes, "no es X, es Y", "la conclusión:", "lectura completa con datos verificados...", flechas → en listas, rule-of-three) y los patrones que SÍ funcionan: opener con dato raro/contradicción, hilos cortos (3-12 unidades de consideración), ritmo asimétrico (tuits de 30 y de 280 chars mezclados), castellano oral (contracciones, "o sea", "lo que pasa es que"), cierre human-first (pregunta abierta o link sin frase ceremoniosa). Aprendido tras publicar un hilo de 19 tuits que sonaba demasiado a IA (2026-05-24).
 
+`blog-498advance-static.md` es OBLIGATORIO leer y aplicar antes de redactar cualquier `blog498a_*.md`. El blog de 498advance.com (Perspectivas, abierto en septiembre de 2026) **no es WordPress**: es HTML estático con clases de `blog.css`, plantilla fija con `{{MARCADORES}}`, schema escrito a mano y un constructor propio en el repo de la web. Si se le aplica el estilo del blog de zoopa.es sale HTML con estilos inline que rompe el design system y se salta el schema. Cubre las dos plantillas (estudio y artículo), el inventario de clases, la política de canónico (pieza nativa vs pieza derivada de carlosortet.com), los cuatro idiomas con slug compartido y el reparto de trabajo con `_i18n/blog_build.py`.
+
 ### Scripts ejecutables (en el skill global)
 
 | Script | Para qué | Cuándo invocarlo |
 |--------|----------|-------------------|
 | **`scripts/new-project.sh tema [--paste]`** | Crea `project_DDMMAAAA_tema/` con source.md + output/ + metadata.json | Antes de cualquier proyecto nuevo |
 | **`scripts/metadata.py`** | CRUD sobre `metadata.json` por proyecto (publications, metrics, tags) | PASO 4 (set-generated) y PASO 5 (add-publication) |
-| **`scripts/validators/run_all.py`** | Ejecuta los 4 validators (titles, numbers, catalan, blog completeness) | Hook `PostToolUse` después de cada `Write`/`Edit` en `output/*` |
-| **`scripts/publisher/wp_publish.py`** | Publica blog en WordPress via REST API con Polylang single-call + Rank Math | PASO 5 cuando el cliente es zoopa.es / 498as.com |
+| **`scripts/validators/run_all.py`** | Ejecuta los validators (titles, numbers, catalan, blog completeness y, en `.html`, blog 498A) | Hook `PostToolUse` después de cada `Write`/`Edit` en `output/*` |
+| **`scripts/publisher/wp_publish.py`** | Publica blog en WordPress via REST API con Polylang single-call + Rank Math | PASO 5.A, **solo** si el destino es zoopa.es |
+| **`scripts/publisher/build_498a_post.py`** | Convierte `blog498a_<lang>.md` en el HTML de la plantilla del blog estático de 498advance.com | PASO 5.B, si el destino es 498advance.com |
+| **`scripts/validators/validate_blog_498a.py`** | Valida un post del blog de 498advance.com: maquetación, clases, anclas, schema, canónico, cifras y enlaces | PASO 5.B, tras generar cada `.html` |
 
 ### Workspace project files
 
@@ -59,7 +68,7 @@ Generar todos los outputs de contenido multicanal para un proyecto a partir de u
 
 ### Cómo se invocan los scripts del skill global
 
-Los scripts viven en el skill global pero operan sobre el **workspace local** del usuario (típicamente `/Users/cop/Documents/claudecode-proj/contentfactory/`). El usuario los invoca desde el workspace con paths absolutos:
+Los scripts viven en el skill global pero operan sobre el **workspace local** del usuario (típicamente `/Users/carlos/Documents/claudecode-proj/contentfactory/`). El usuario los invoca desde el workspace con paths absolutos:
 
 ```bash
 # Crear proyecto:
@@ -68,9 +77,17 @@ Los scripts viven en el skill global pero operan sobre el **workspace local** de
 # Validar un output:
 python3 ~/.claude/skills/content-factory/scripts/validators/run_all.py project_XXX/output/blog.md
 
-# Publicar:
+# Publicar en WordPress (solo zoopa.es):
 python3 ~/.claude/skills/content-factory/scripts/publisher/wp_publish.py \
   --file project_XXX/output/blog.md --lang es --categories 2245,2235 --status draft
+
+# Generar los posts del blog estatico de 498advance.com (es, ca, en, it):
+python3 ~/.claude/skills/content-factory/scripts/publisher/build_498a_post.py \
+  project_XXX/output/blog498a_{es,ca,en,it}.md --build
+
+# Validar un post del blog de 498advance.com:
+python3 ~/.claude/skills/content-factory/scripts/validators/validate_blog_498a.py \
+  "/Users/carlos/Documents/claudecode-proj/design system 498A/498Adesign/blog/slug.html"
 ```
 
 **O symlinkar al `_system/` local** para preservar el workflow histórico:
@@ -98,7 +115,9 @@ Ver `~/.claude/skills/content-factory/docs/HOW-TO-NEW-PROJECT.md` para el flujo 
 3. Dejar que el usuario seleccione/deseleccione
 4. Confirmar seleccion antes de continuar
 
-**Total disponible: 35 canales | Core por defecto: 12 canales**
+**Total disponible: 41 canales | Core por defecto: 12 canales**
+
+**Los canales de blog dependen del destino** (PASO 1, pregunta 1): si es zoopa.es se generan `blog.md` / `blog_en.md` / `blog_ca.md`; si es 498advance.com se generan `blog498a_es.md` / `_ca` / `_en` / `_it` y **no** los de WordPress. No generar los dos juegos salvo que el usuario pida publicar en las dos webs.
 
 Nunca asumir canales sin preguntar. Nunca generar contenido sin completar este paso.
 
@@ -108,15 +127,32 @@ Nunca asumir canales sin preguntar. Nunca generar contenido sin completar este p
 
 Despues de seleccionar canales, preguntar SIEMPRE:
 
-1. **Web de publicacion** — zoopa.es o 498as.com
-2. **Autor del blog** — Carlos Ortet u otro autor disponible en WordPress
+1. **Web de publicacion** — PREGUNTAR SIEMPRE, sin asumir. Los dos destinos son técnicamente
+   distintos y el output no es intercambiable:
+
+   | Destino | Qué es | Outputs | Publicación |
+   |---|---|---|---|
+   | **zoopa.es** | WordPress + Polylang + Rank Math | `blog.md`, `blog_en.md`, `blog_ca.md` (HTML con estilos inline) | REST API · `wp_publish.py` · PASO 5.A |
+   | **498advance.com** | HTML estático, repo `498AS/498a-new-web-design` | `blog498a_es.md`, `_ca`, `_en`, `_it` (markdown restringido → plantilla) | `build_498a_post.py` + `_i18n/blog_build.py` + FTPS · PASO 5.B |
+
+   `498as.com` ya no es un destino: hace 301 hacia `498advance.com` y no queda WordPress ahí.
+   Si el destino es 498advance.com, leer `references/blog-498advance-static.md` antes de redactar.
+
+   **Si el destino es 498advance.com, preguntar además el canónico** (cambia el `<head>` y el cuerpo):
+   *"¿Es una pieza nativa de 498A (estudio, método, producto → canónico en 498advance.com) o una pieza
+   derivada de carlosortet.com (canónico en la web personal)?"*. En el caso derivado el texto **no**
+   puede ser un copia-pega: entradilla nueva, bloque "qué hacemos con esto en 498A" y enlaces a servicio.
+   Ver § 7 de la referencia.
+
+2. **Autor del blog** — Carlos Ortet u otro autor. En zoopa.es tiene que existir como usuario de
+   WordPress; en 498advance.com el autor va en el front matter (`autor`, `rol_autor`, `bio_autor`)
 3. **Canal de LinkedIn** — ZOOPA, 498AS o Carlos Ortet personal
 4. **Tema nuevo o existente** — Si ya hay posts anteriores, revisar para no duplicar y enlazar
 5. **Imagen principal** — URL o ruta de la featured image (blog, Substack, Medium, LinkedIn, og:image)
 6. **Imagen secundaria** — URL o ruta opcional para cuerpo del blog o plataformas con varias imagenes
 7. **⭐ Anecdotas reales con cliente nombrado** — *"¿Tienes 1-2 anecdotas reales de proyectos con clientes nombrados (con o sin NDA) que ilustren el angulo? Sin esto el post sale como divulgacion; con esto sale como posicionamiento."* Si el usuario no tiene a mano, dejar placeholder visible en el `source.md` (formato `[EJEMPLO 1 — historia real ...]`) y avisar antes de PASO 4.
 
-8. **⭐ Si el autor es Carlos Ortet, añadir entrada a carlosortet.com (con pregunta previa)** — Cuando se publique una pieza editorial (blog en zoopa.es / 498as.com, post en Medium, artículo en Harvard Deusto, Substack relevante, paper, etc.) firmada por **Carlos Ortet**, PREGUNTAR siempre al usuario despues de publicar: *"¿Añadimos esta publicación a `carlosortet.com`?"*. Si el usuario dice sí, ejecutar el sub-flujo de PASO 6.
+8. **⭐ Si el autor es Carlos Ortet, añadir entrada a carlosortet.com (con pregunta previa)** — Cuando se publique una pieza editorial (blog en zoopa.es / 498advance.com, post en Medium, artículo en Harvard Deusto, Substack relevante, paper, etc.) firmada por **Carlos Ortet**, PREGUNTAR siempre al usuario despues de publicar: *"¿Añadimos esta publicación a `carlosortet.com`?"*. Si el usuario dice sí, ejecutar el sub-flujo de PASO 6.
 
 ### Reglas derivadas
 
@@ -164,6 +200,7 @@ Tras verificar, contar palabras del source y guardarlas: `python3 _system/metada
    - No ignorar ni descartar ninguna parte salvo instruccion explicita
 4. Generar outputs en este orden:
    - Blog ES → Blog EN → Blog CA → Blog Lectura Facil (si aplica)
+     *(si el destino es 498advance.com: `blog498a_es` → `_ca` → `_en` → `_it`, con el MISMO slug)*
    - LinkedIn ES → LinkedIn CA
    - X/Twitter → Threads
    - WhatsApp Grupos ES → CA → Canal ES → CA
@@ -181,6 +218,7 @@ Tras verificar, contar palabras del source y guardarlas: `python3 _system/metada
 | `substack_ready.txt` | `references/substack-style.md` | Siempre — Substack es email + permalink, no blog Wordpress condensado |
 | `x_twitter_ready.txt` / `threads_ready.txt` | `references/x-twitter-voice-style.md` | Siempre — X penaliza voz LLM, requiere cadencia humana asimétrica |
 | `blog.md` / `blog_en.md` / `blog_ca.md` | `references/blog-html-components.md` + `references/editorial-patterns.md` | Siempre — blog largo Wordpress con componentes HTML inline |
+| `blog498a_es.md` / `_ca` / `_en` / `_it` | `references/blog-498advance-static.md` + `references/editorial-patterns.md` | Siempre — blog estático de 498advance.com. **NO usar `blog-html-components.md` ni `wp_publish.py`** |
 
 **Regla crítica**: si vas a generar `substack_ready.txt`, un output de LinkedIn personal de Carlos, o `x_twitter_ready.txt` / `threads_ready.txt`, lee primero el file de estilo correspondiente. Aplicar el estilo del blog largo a otros canales produce: (a) Substack → subject line aburrido + cuerpo con HTML que el editor Prosemirror rompe; (b) X → hilos formulaicos detectables como IA al instante (em-dashes, "no es X, es Y", "lectura completa con datos verificados", rule-of-three obsesivo).
 
@@ -190,12 +228,17 @@ Aplicar **al menos 2 de 4** de los patrones documentados en `references/editoria
 
 | Patrón | Cuándo aplicar | Output |
 |--------|----------------|--------|
-| **1. Killer line + pull-quote** | Siempre (1 por blog) | Frase 15-25 palabras autocontenida, aislada en `<blockquote>` (componente "Pull-quote" de blog-html-components.md). Reusada textual en LinkedIn, X, Substack. |
+| **1. Killer line + pull-quote** | Siempre (1 por blog) | Frase 15-25 palabras autocontenida, aislada en `<blockquote>` (componente "Pull-quote" de blog-html-components.md). Reusada textual en LinkedIn, X, Substack. En 498advance.com el equivalente es `<aside class="callout">`, no `<blockquote>`. |
 | **2. Paradoja explícita** | Cuando el ángulo identifica una decisión sectorial cuestionable | Subsección con estructura: A vs B opuestos → síntesis tipo *"todo tiene que parecer lo que no es"* |
 | **3. "Cuándo X suma y cuándo X resta"** | Siempre que la tesis ataque una práctica del sector | Subsección H3 que matiza, distinguiendo cuando la práctica es decisión deliberada útil vs cuando es reflejo/moda contraproducente |
 | **4. Caso real con cliente nombrado** | Siempre (1-2 casos) | Sección "Lo que vemos desde la trinchera" con anécdotas firmadas (clientes con o sin NDA). Estructura: tensión → decisión → lección |
 
-### ⭐ Componentes HTML obligatorios en blogs
+### ⭐ Componentes HTML obligatorios en blogs de WordPress (zoopa.es)
+
+> Esta sección es **solo** para zoopa.es. En 498advance.com los componentes son las clases de
+> `blog.css` y la estructura obligatoria está en § 5 de `references/blog-498advance-static.md`:
+> `.post-takeaways` arriba, `.callout`, `.datos`, `.tabla-datos`, `.figura`, `.detalle`,
+> `.metodologia`, `.datos-abiertos`, `.fuentes`, `.post-autor`. Cero estilos inline.
 
 Incluir **siempre** estos componentes (definiciones en `references/blog-html-components.md`):
 
@@ -247,7 +290,7 @@ Estas optimizaciones aplican tambien a Medium, Dev.to, Hashnode y HackerNoon (si
 
 #### Publicacion del metadata en WordPress
 
-Al publicar el blog en WordPress (zoopa.es o 498as.com), los metadatos del comentario HTML deben introducirse en los campos correspondientes del editor:
+Al publicar el blog en WordPress (solo zoopa.es), los metadatos del comentario HTML deben introducirse en los campos correspondientes del editor:
 
 | Campo del comentario HTML | Donde introducirlo en WordPress |
 |---------------------------|--------------------------------|
@@ -291,7 +334,106 @@ Resumen:
 2. **Capitalizacion sentence case** — Verificar que todos los titulos, subtitulos y encabezados cumplen la regla
 3. Recorrer cada archivo, corregir y guardar
 
-**El proyecto NO se considera finalizado hasta completar los pasos 3.5 y 3.6.**
+**El proyecto NO se considera finalizado hasta completar los pasos 3.5, 3.6 y 3.7.**
+
+---
+
+### PASO 3.7: Anti-AI-detection check (OBLIGATORIO antes de cada publicacion)
+
+**Antes de marcar cualquier output como listo para publicar**, aplicar este checklist de 12 puntos. Aplica a TODOS los canales, pero es CRITICO para Hacker News, Quora, Reddit r/programming, r/MachineLearning, Turnitin-checked content.
+
+> **Before publishing, check if any of these appear in your text:**
+>
+> - [ ] "Delve into" / "Leverage" / "Navigate" / "Unlock" / "Harness"
+> - [ ] "Groundbreaking" / "Revolutionary" / "Cutting-edge" / "Seamless"
+> - [ ] "Furthermore" / "Moreover" / "Additionally" / "Crucially"
+> - [ ] "In short" / "Ultimately" / "The conclusion:"
+> - [ ] More than 1 em-dash
+> - [ ] "Not X, but Y" structure
+> - [ ] Arrows → in lists
+> - [ ] Uniform paragraphs of 4-6 sentences each
+> - [ ] CTA at the end ("read the full", "subscribe")
+> - [ ] Zero typos, zero minor errors
+> - [ ] Zero spoken connectors ("So,", "Look,", "Here's the thing")
+> - [ ] Zero specific anecdotes (no dates, no names)
+>
+> **Threshold:**
+> **If you check 3 or more boxes, your text will sound like LLM and a detector will flag it. Rewrite.**
+
+#### Tablas de referencia rápida (anti-patterns)
+
+**Lexical (words that betray):**
+
+| CATEGORY | EXAMPLES | WHY IT BETRAYS |
+|---|---|---|
+| Pretentious verbs | delve, leverage, navigate, unlock, harness, foster, embark, illuminate, underscore | Overused by ChatGPT/Claude. Almost never in spontaneous human writing. |
+| Empty adjectives | groundbreaking, revolutionary, cutting-edge, seamless, robust, comprehensive, multifaceted | Modifiers without concrete information. |
+| Formulaic adverbs | crucially, importantly, notably, significantly, ultimately | Connectors LLMs use to signal transitions. |
+| Abstract nouns | transparency, intelligence (noun), efficiency, optimization, alignment | LLMs abstract when humans would use examples. |
+
+**Structural (forms that betray):**
+
+| PATTERN | WHY IT BETRAYS |
+|---|---|
+| "Rule of three" (X, Y, and Z) | Overused classical rhetorical pattern. |
+| Em-dashes for parenthetical inserts (—) | LLMs overuse. Humans use commas, parens, or new sentences. |
+| "Not X, but Y" | LLM punchline structure, almost never natural. |
+| "In short:" / "Ultimately:" | Formulaic closings. Humans don't signal conclusions this way. |
+| Arrows → in lists | Almost exclusive to LLMs. |
+| All-bullets lists | Humans mix prose and bullets. LLMs go all-bullets. |
+| Uniform paragraphs (4-6 sentences each) | Low burstiness. Humans vary radically. |
+| Formal connectors (Furthermore, Moreover) | Academic-only. In social media or comments: betrays. |
+| CTA at end ("read more", "subscribe") | Marketing-speak, easily detectable. |
+
+#### Procedimiento operativo del check
+
+1. **Auto-scan** del output con grep para detectar palabras-bandera (verbos, adjetivos, conectores formales):
+   ```bash
+   # Lexical flags
+   grep -iEn "\b(delve|leverage|navigate|unlock|harness|foster|embark|illuminate|underscore)\b" output/<file>
+   grep -iEn "\b(groundbreaking|revolutionary|cutting-edge|seamless|robust|comprehensive|multifaceted)\b" output/<file>
+   grep -iEn "\b(crucially|importantly|notably|significantly|ultimately)\b" output/<file>
+   grep -iEn "\b(transparency|efficiency|optimization|alignment)\b" output/<file>
+
+   # Structural flags
+   grep -nE "—" output/<file>                          # em-dashes (count > 1 = rewrite)
+   grep -nE "→" output/<file>                          # arrows in lists
+   grep -nE "^(In short|Ultimately|The conclusion):" output/<file>
+   grep -iEn "\b(furthermore|moreover|additionally|subsequently)\b" output/<file>
+   grep -iEn "(read the full|subscribe|learn more)" output/<file>
+   ```
+
+2. **Conteo de em-dashes**: si `grep -c "—" output/<file>` devuelve >1, reescribir.
+
+3. **Detectar arrows en listas**:
+   ```bash
+   grep -E "^\s*[—-].*→|^→" output/<file>
+   ```
+
+4. **Verificar burstiness** (asimetria parrafos): si todos los parrafos tienen 4-6 frases similares, reescribir al menos 2 con longitud distinta (1 frase muy corta + 1 muy larga).
+
+5. **Verificar marcadores humanos**:
+   - Al menos 1 conector oral ("So,", "Look,", "Here's the thing")
+   - Al menos 1 anecdota especifica con fecha o nombre
+   - Al menos 1 contraccion (don't, it's, we're)
+   - Idealmente 1-2 typos o errores menores aceptables (especialmente en ESL writers)
+
+#### Severidad por canal
+
+Aplicar el threshold ajustado segun la plataforma destino:
+
+| Canal | Threshold maximo de boxes marcados | Politica |
+|---|---|---|
+| Hacker News, Turnitin, GPTZero/Originality.ai | **0 boxes** | Research-assist only. Carlos escribe 100% manual. |
+| Quora, Reddit r/programming, r/MachineLearning | **≤1 box** | Edit manual fuerte ≥30% prose reescrita. Sin Grammarly. |
+| Reddit r/europe, r/news | **≤2 boxes** | Edit ligero OK. |
+| LinkedIn, Substack, Medium, X, Bluesky, Threads, WhatsApp, Blog WP | **≤3 boxes** | Skill drafts OK con voces personales aplicadas. |
+
+#### Referencias completas
+
+Para guia tecnica completa (perplexity, burstiness, stylometric features, casos reales validados), ver `references/humanize-text-anti-ai.md`. Es **OBLIGATORIO leerla y aplicarla** la primera vez que se ejecuta el skill, y consultarla en cada PASO 3.7.
+
+**El proyecto NO se considera finalizado hasta completar los pasos 3.5, 3.6 y 3.7.**
 
 ---
 
@@ -308,7 +450,8 @@ Cada vez que se hace `Write`/`Edit` sobre un fichero en `project-XXX/output/`, e
 - Sentence case en headings
 - False friends `billion`/`billon` (ES) o `bilions` (CA)
 - Caracteres catalanes faltantes (ç, l·l) en archivos `*_ca.md`
-- Completitud de blogs: bloque SEO, key takeaways, mid-CTA, final-CTA, glosario, FAQ ≥ 5, alt text, exactamente 1 H1, palabras minimas
+- Completitud de blogs de WordPress: bloque SEO, key takeaways, mid-CTA, final-CTA, glosario, FAQ ≥ 5, alt text, exactamente 1 H1, palabras minimas (se salta los `blog498a_*`, que tienen otra estructura)
+- Posts del blog de 498advance.com (`.html` en `blog/` o `<lang>/blog/`): maquetacion sin estilos inline, clases que existen en `blog.css`, anclas de seccion, indice coherente, JSON-LD, canonico, cifras canonicas y enlaces internos
 
 **Procedimiento:** revisar los avisos despues de cada escritura y corregir antes de continuar al siguiente fichero. Los avisos NO bloquean, pero deben resolverse antes de PASO 5.
 
@@ -322,13 +465,15 @@ Tras escribir todos los outputs, marcar en metadata:
 python3 _system/metadata.py set-generated project-XXX --channels blog_es,blog_en,blog_ca,linkedin_es,...
 ```
 
-Convencion de keys: `<canal_base>_<idioma>` (ej: `blog_es`, `linkedin_ca`, `whatsapp_canal_es`). Ver `_system/metadata-schema.md`.
+Convencion de keys: `<canal_base>_<idioma>` (ej: `blog_es`, `linkedin_ca`, `whatsapp_canal_es`). El blog estatico de 498advance.com usa `blog498a_es`, `blog498a_ca`, `blog498a_en`, `blog498a_it`, distintas de `blog_es` (que sigue siendo el de WordPress). Ver `_system/metadata-schema.md`.
 
 ---
 
-### PASO 5: Publicacion en WordPress (si aplica)
+### PASO 5.A: Publicacion en WordPress · solo zoopa.es (si aplica)
 
-Cuando el usuario pida publicar en el blog de zoopa.es o 498as.com, seguir este protocolo:
+Cuando el destino sea el blog de zoopa.es (WordPress + Polylang + Rank Math), seguir este protocolo.
+
+**Si el destino es 498advance.com, saltar a PASO 5.B: ahi no hay WordPress.** `498as.com` hace 301 hacia `498advance.com` y su `/wp-json/` da 404 (verificado 2026-09-27).
 
 #### 5.1 Publicar via API REST — CLI con curl/python (OBLIGATORIO)
 
@@ -513,9 +658,104 @@ Ver `_system/metadata-schema.md` para el schema completo y la convencion de keys
 
 ---
 
+### PASO 5.B: Publicacion en el blog estatico de 498advance.com (si aplica)
+
+Cuando el destino sea **498advance.com** (Perspectivas). No hay CMS ni API: son ficheros
+`.html` en el repo `498AS/498a-new-web-design`, local en
+`/Users/carlos/Documents/claudecode-proj/design system 498A/`.
+
+**Antes de escribir una sola linea, leer `references/blog-498advance-static.md`.**
+
+#### 5.B.1 Reparto de trabajo (no cruzarlo)
+
+| Quien | Que hace |
+|---|---|
+| El skill | El contenido: `blog498a_<lang>.md` con front matter + markdown restringido |
+| `build_498a_post.py` | Lo convierte en el HTML de la plantilla: head, hero, secciones con ancla, componentes, schema, indice lateral |
+| `_i18n/blog_build.py` (repo web) | La fontaneria: `lang`, `hreflang` reciproco, `og:locale`, `inLanguage`, navegacion, selector de idioma, etiquetas `data-i18n`, los cuatro listados, el bloque del blog en `sitemap.xml` y los cuatro feeds |
+| `deploy.sh` (repo web) | La subida por FTPS y el aviso de purgar Cloudflare |
+
+**Nunca a mano**: los bloques `<!-- 498A:hreflang -->`, `<!-- 498A:nav -->`,
+`<!-- 498A:switcher -->` y `<!-- 498A:lista -->`, los listados, el `sitemap.xml` ni los
+feeds. `blog_build.py` los reescribe en cada pasada.
+
+#### 5.B.2 Idiomas
+
+Cuatro: **es, ca, en, it**. El blog **no lleva frances** (`/fr/` enlaza al blog en ingles).
+El **slug es el mismo en los cuatro idiomas** y los `id` de seccion tambien: solo cambia el
+prefijo de ruta (`/blog/`, `/ca/blog/`, `/en/blog/`, `/it/blog/`). No traducir el slug.
+
+Un post no tiene que existir en los cuatro: `blog_build.py` declara solo los que hay y avisa
+de los que faltan. Prioridad si no se hacen los cuatro: ES (es el `x-default`), luego EN.
+
+#### 5.B.3 Secuencia
+
+```bash
+cd "/Users/carlos/Documents/claudecode-proj/design system 498A"
+
+# 1 · ensayo, sin tocar el repo
+python3 ~/.claude/skills/content-factory/scripts/publisher/build_498a_post.py \
+  <proyecto>/output/blog498a_es.md --dry-run
+
+# 2 · los cuatro idiomas y el constructor del blog
+python3 ~/.claude/skills/content-factory/scripts/publisher/build_498a_post.py \
+  <proyecto>/output/blog498a_{es,ca,en,it}.md --build
+
+# 3 · revalidar despues del constructor (el generador ya valida al escribir,
+#     pero blog_build.py reescribe la fontaneria de idioma)
+python3 ~/.claude/skills/content-factory/scripts/validators/validate_blog_498a.py \
+  498Adesign/blog/<slug>.html 498Adesign/en/blog/<slug>.html
+
+# 4 · comprobar que la web queda coherente
+python3 _i18n/blog_build.py --check
+
+# 5 · subir y purgar
+./deploy.sh --dry-run && ./deploy.sh
+```
+
+Lo que sigue siendo manual despues del paso 2:
+
+1. **Imagen social** 1200x630 en `498Adesign/assets/og/<slug>.jpg`. `_i18n/og_build.py` es la
+   referencia (Chrome headless sobre una plantilla con las fuentes de marca).
+2. **En un estudio: el csv y el json** en `498Adesign/blog/datos/<slug>.csv` y `.json`, con la
+   cabecera de metodo de `blog/datos/README.md` y licencia CC BY 4.0.
+
+#### 5.B.4 Enlazado interno
+
+Todo post enlaza a lo que vende 498A, sin forzarlo. **Solo GEORadar tiene pagina propia**
+(`/productos/georadar.html`); S.A.M., GEOdoctor, LEO, Prompt Atlas, Stardesk, COMPLY y
+HUMANMADE se enlazan al hub `/productos/`. Capacidades a `/#capacidades`, investigacion y
+Gerard a `/#investigacion`. Inventarse `/productos/sam.html` es un 404. Tabla completa en
+§ 9 de la referencia.
+
+#### 5.B.5 Verificacion post-publicacion
+
+1. `curl -sI https://498advance.com/blog/<slug>.html` devuelve 200, y lo mismo en
+   `/ca/blog/`, `/en/blog/` y `/it/blog/` para los idiomas publicados
+2. El post aparece en el listado de cada idioma
+3. El `hreflang` de cada version declara solo los idiomas que existen
+4. El selector de idioma de la cabecera no lleva a ningun 404
+5. La imagen social se ve al pegar la URL en LinkedIn o Slack
+6. En un estudio: el csv y el json se descargan y el `Dataset` del schema los declara
+7. `validate_blog_498a.py` y `blog_build.py --check` sin avisos
+
+#### 5.B.6 Registro en metadata.json
+
+Igual que en 5.A, una llamada por idioma publicado:
+
+```bash
+python3 _system/metadata.py add-publication project-XXX \
+  --channel blog498a_es \
+  --url https://498advance.com/blog/<slug>.html
+```
+
+Si el autor es Carlos Ortet, seguir con PASO 6.
+
+---
+
 ### PASO 6: Añadir entrada a carlosortet.com (CONDICIONAL — solo si autor = Carlos Ortet)
 
-**OBLIGATORIO** preguntar al usuario despues de la publicacion exitosa de cualquier pieza editorial firmada por Carlos Ortet (blog en zoopa.es / 498as.com, post en Medium, articulo en Harvard Deusto Business Review, Substack relevante, paper academico, etc.).
+**OBLIGATORIO** preguntar al usuario despues de la publicacion exitosa de cualquier pieza editorial firmada por Carlos Ortet (blog en zoopa.es / 498advance.com, post en Medium, articulo en Harvard Deusto Business Review, Substack relevante, paper academico, etc.).
 
 **Pregunta exacta:**
 
@@ -529,7 +769,7 @@ Ver `_system/metadata-schema.md` para el schema completo y la convencion de keys
 
 #### 6.1 Estructura de la entrada (TypeScript)
 
-Insertar como **primer item** del array `publications` (mas reciente primero) en `/Users/cop/Documents/03_PERSONAL/carlosortet/src/data/resume.tsx`. Formato:
+Insertar como **primer item** del array `publications` (mas reciente primero) en `/Users/carlos/Documents/03_PERSONAL/carlosortet/src/data/resume.tsx`. Formato:
 
 ```typescript
 {
@@ -577,7 +817,7 @@ Insertar como **primer item** del array `publications` (mas reciente primero) en
 # (con Edit tool, insertar como primer item del array publications)
 
 # 2. Verificar el diff
-cd /Users/cop/Documents/03_PERSONAL/carlosortet
+cd /Users/carlos/Documents/03_PERSONAL/carlosortet
 git diff src/data/resume.tsx
 
 # 3. Commit con mensaje en patron existente
@@ -614,6 +854,7 @@ Ejemplo real en commit `8a28b60`: tras publicar "The invisible fabric of AI" (Me
 
 ## Referencias
 
-- Ver `references/channel-catalog.md` para la lista maestra de 35 canales con archivos, idiomas y defaults
+- Ver `references/channel-catalog.md` para la lista maestra de 41 canales con archivos, idiomas y defaults
+- Ver `references/blog-498advance-static.md` para el blog estatico de 498advance.com (OBLIGATORIO antes de cualquier `blog498a_*`)
 - Ver `references/orthography-rules.md` para las reglas de revision ortografica y de estilo
 - Ver `references/lessons-learned.md` para lecciones aprendidas por plataforma

@@ -4,7 +4,7 @@ generate_blog_main_image.py
 
 Generador de imagenes principales (main + secondary) para blog posts
 de Carlos Ortet, siguiendo el estilo canonico documentado en:
-  /Users/cop/.claude/skills/content-factory/references/blog-main-image-style.md
+  /Users/carlos/.claude/skills/content-factory/references/blog-main-image-style.md
 
 Uso:
   python3 generate_blog_main_image.py \\

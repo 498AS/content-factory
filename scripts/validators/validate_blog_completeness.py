@@ -1,6 +1,7 @@
 """Blog completeness validator.
 
-For files matching blog*.md in an output/ directory, verify the structural
+For files matching blog*.md in an output/ directory (excluding blog498a_*.md,
+which belong to the static 498advance.com blog), verify the structural
 checklist: SEO metadata block, key takeaways, mid-CTA, final-CTA, glosario,
 FAQ (>=5), exactly 1 H1, alt text on images.
 
@@ -39,6 +40,9 @@ def is_blog_file(path: Path) -> bool:
     if not name.endswith(".md"):
         return False
     if not name.startswith("blog"):
+        return False
+    if name.startswith("blog498a"):
+        # Blog estatico de 498advance.com: otra estructura y otro validador.
         return False
     if "output" not in {p.name.lower() for p in path.parents}:
         return False

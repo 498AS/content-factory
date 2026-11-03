@@ -103,7 +103,12 @@ def md_to_gutenberg(md: str) -> tuple[str, str]:
             title = line[2:].strip()
             continue
 
-        if line.startswith("<figure") or line.startswith("<div ") or line.startswith("<hr "):
+        if (line.startswith("<p ") or line.startswith("<p>")) and line.endswith("</p>"):
+            flush_paragraph()
+            out_blocks.append(f"<!-- wp:html -->\n{line}\n<!-- /wp:html -->")
+            continue
+
+        if line.startswith("<figure") or line.startswith("<div ") or line.startswith("<hr ") or line.startswith("<blockquote"):
             flush_paragraph()
             in_html_block = True
             html_buffer.append(raw)
@@ -111,8 +116,8 @@ def md_to_gutenberg(md: str) -> tuple[str, str]:
 
         if in_html_block:
             html_buffer.append(raw)
-            if line == "</figure>" or line == "</div>" or line.startswith("<hr ") and line.endswith("/>"):
-                if line == "</figure>" or line == "</div>":
+            if line == "</figure>" or line == "</div>" or line == "</blockquote>" or line.startswith("<hr ") and line.endswith("/>"):
+                if line == "</figure>" or line == "</div>" or line == "</blockquote>":
                     in_html_block = False
                     flush_html()
             elif line.startswith("<hr "):

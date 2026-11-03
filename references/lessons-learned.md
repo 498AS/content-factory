@@ -129,6 +129,110 @@ Marcadores LLM a EVITAR (a pesar de la tentación de polish):
 - Cualquier rule-of-three
 
 **Conclusión meta**: la única manera honesta de responder a dang sobre uso LLM es NO usar LLM en la respuesta. Cualquier polish posterior delata.
+
+#### 🔑 Respuesta oficial de dang (24 may 2026 · paradigma nuevo: errores = autenticidad)
+
+Tras el email de Carlos admitiendo asistencia LLM y pidiendo permiso para reescribir manualmente, **dang respondió personalmente** confirmando dos cosas críticas:
+
+> *"For sure you can write it again manually. If you run into any trouble, let us know.*
+>
+> *We're well aware that our non-native English speakers face extra challenges participating on HN. Unfortunately even tools like grammarly leave so many AI imprints on the text that this is not a viable solution. However: **you should not worry about mistakes in grammar, spelling, etc. because these are rapidly becoming signs of authenticity!** Everything is changing in the AI era at the moment :)*
+>
+> *Hope this makes sense,*
+> *Daniel"*
+
+**Implicaciones operativas (este es un cambio de paradigma, no un matiz)**:
+
+1. **HN admite explícitamente** que Grammarly y similares dejan "AI imprints" detectables. **Quitar de la stack** de herramientas válidas para texto HN.
+
+2. **Errores de gramática y ortografía ahora son SEÑAL POSITIVA**, no negativa. Esto invierte 25 años de copywriting profesional. Los typos genuinos, conjugaciones imperfectas, sintaxis no-native pasan de "vergonzoso" a "authenticity marker".
+
+3. **HN tiene una política explícita pro-ESL** (English as Second Language). No-native speakers son bienvenidos y sus errores son aceptados.
+
+4. **Dang ofrece soporte directo** a quien tiene problemas reescribiendo manualmente. Email: `hn@ycombinator.com`.
+
+**Workflow nuevo para HN (research-assist only, NO writing-assist)**:
+
+Cuando Carlos quiera publicar en HN, el flujo correcto es:
+
+```
+┌─────────────────────────────────────────────────────────┐
+│ PASO 1 — Skill aporta SOLO research (datos verificables)│
+│ ──────────────────────────────────────────────────────  │
+│ • 10-15 bullets con datos, cifras, fuentes              │
+│ • URLs verificadas con curl                             │
+│ • Cronologías de eventos                                │
+│ • Cuotas de mercado, lead times, etc.                   │
+│ • CERO frases redactadas, CERO estructura narrativa     │
+└─────────────────────────────────────────────────────────┘
+                          ↓
+┌─────────────────────────────────────────────────────────┐
+│ PASO 2 — Carlos escribe el comentario 100% manual       │
+│ ──────────────────────────────────────────────────────  │
+│ • En su inglés real, sin Grammarly, sin LLM             │
+│ • Typos y errores menores son OK (incluso deseables)   │
+│ • Usa los datos del paso 1 como referencias            │
+│ • Tono conversacional, primera persona                  │
+│ • Sentencias cortas, no formal connectors              │
+└─────────────────────────────────────────────────────────┘
+                          ↓
+┌─────────────────────────────────────────────────────────┐
+│ PASO 3 — Publicar directamente, SIN edit posterior LLM │
+│ ──────────────────────────────────────────────────────  │
+│ • Submit a HN                                           │
+│ • Verificar curl anónimo (no flagged)                  │
+│ • Responder comments manualmente                        │
+└─────────────────────────────────────────────────────────┘
+```
+
+**Lo que el skill PUEDE hacer para HN** (research-assist):
+- Investigar y verificar datos con WebSearch
+- Compilar lista de fuentes citables
+- Verificar URLs activas con curl
+- Mapear cronología de eventos
+- Identificar cifras clave
+
+**Lo que el skill NO puede hacer para HN** (writing-assist queda prohibido):
+- Redactar el comentario o submission
+- Pulir, reformular, mejorar prose escrita por Carlos
+- Sugerir frases o estructura narrativa
+- Hacer "humanizar texto IA" (cualquier post-processing delata)
+
+**Aplicabilidad cross-canal** (esto es lo más importante):
+
+| Plataforma | Status detección AI | Política recomendada |
+|---|---|---|
+| **HN** | 🔴 Clasificador activo confirmado por admin | Research-assist only. Carlos escribe 100% manual. |
+| **Quora** | 🟡 Detección emergente, no confirmada | Edit manual fuerte de cada respuesta. Mínimo 30% de prose reescrita por Carlos. |
+| **Reddit** | 🟡 Varía por sub. r/programming muy estricto, r/europe permisivo | Self-text posts: editar fuerte. Comentarios: 100% manual. |
+| **LinkedIn** | 🟢 Algoritmo no penaliza pero audiencia detecta | OK usar skill drafts si el patrón Carlos Ortet personal está aplicado |
+| **Substack** | 🟢 Sin detección plataforma | Skill drafts OK. Carlos edita pasada final. |
+| **Medium** | 🟢 Sin detección plataforma | Import desde blog OK. Skill drafts OK. |
+| **X / Bluesky / Threads** | 🟢 Sin detección plataforma | Skill drafts OK con voz x-twitter-voice-style.md |
+| **WhatsApp / Telegram** | 🟢 N/A | Skill drafts OK |
+
+**Pivot estratégico para el servicio Authority Boost**:
+
+El servicio AB90 NO puede prometer "contenido publicable en HN" como entregable estándar. HN requiere un workflow distinto del resto de canales. Posibilidades:
+
+- **AB90 estándar**: 12 canales editables por skill. NO incluye HN.
+- **AB90 + HN add-on**: skill aporta dossier de datos verificables; cliente escribe comment 100% manual; skill ofrece coaching previo (qué evitar) sin tocar el texto.
+- **Documentar al cliente** en el pitch: "HN requiere autoría humana directa por política de la plataforma. Te damos los datos; tú escribes."
+
+#### Patrón verificable (no asumido) en HN
+
+A futuro, antes de cualquier submission HN:
+
+```bash
+# Verificación de cuenta y karma
+curl -s "https://news.ycombinator.com/user?id=carlosortet" -H "User-Agent: Mozilla/5.0" | grep -oE "karma.*[0-9]+" | head -1
+
+# Si karma <50 → primero construir karma con 4-6 semanas de comments en hilos ajenos, 100% manuales
+# Si karma >100 → submission propia OK, manteniendo policy "manual only"
+```
+
+---
+
 - **Discord**: Respetar reglas del servidor. Consultar #rules. Enmarcar como contribucion, no promocion.
 
 ## Redes sociales

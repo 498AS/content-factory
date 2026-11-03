@@ -485,7 +485,7 @@ Tras email de dang el 24 may 2026 confirmando que nuestro OP comment fue clasifi
 
 Cuando publicamos pieza editorial firmada por Carlos Ortet (blog, Medium, Substack):
 
-1. Editar `/Users/cop/Documents/03_PERSONAL/carlosortet/src/data/resume.tsx`
+1. Editar `/Users/carlos/Documents/03_PERSONAL/carlosortet/src/data/resume.tsx`
 2. Añadir entry a `publications[0]` (es array, el más nuevo arriba)
 3. Pattern:
    ```tsx
@@ -520,13 +520,13 @@ Cuando publicamos pieza editorial firmada por Carlos Ortet (blog, Medium, Substa
 ### Listar sesiones Playwright activas
 
 ```bash
-ls /Users/cop/Library/Caches/ms-playwright/daemon/*/ud-*-chrome/ 2>/dev/null
+ls /Users/carlos/Library/Caches/ms-playwright/daemon/*/ud-*-chrome/ 2>/dev/null
 ```
 
 ### Reset sesión específica (forzar re-login)
 
 ```bash
-rm -rf /Users/cop/Library/Caches/ms-playwright/daemon/*/ud-{nombre}-chrome/
+rm -rf /Users/carlos/Library/Caches/ms-playwright/daemon/*/ud-{nombre}-chrome/
 ```
 
 ### Screenshot rápido

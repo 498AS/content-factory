@@ -7,7 +7,7 @@
 ## TL;DR (90 segundos)
 
 ```bash
-cd /Users/cop/Documents/claudecode-proj/contentfactory
+cd /Users/carlos/Documents/claudecode-proj/contentfactory
 claude --dangerously-skip-permissions
 ./_system/new-project.sh tema-corto       # crea la estructura
 # pegar el source.md
@@ -28,7 +28,7 @@ Y en el chat de Claude:
 **CRÍTICO:** Claude debe arrancarse desde `contentfactory/`. Si no, los paths relativos (`_system/...`, `project_XXX/...`) no resuelven.
 
 ```bash
-cd /Users/cop/Documents/claudecode-proj/contentfactory
+cd /Users/carlos/Documents/claudecode-proj/contentfactory
 claude --dangerously-skip-permissions
 ```
 
@@ -73,7 +73,7 @@ writerbatch project_DDMMAAAA_tema
 
 ### 5. Responder a PASO 0 (canales)
 
-La skill te lista 35 canales y te confirma los 12 core por defecto:
+La skill te lista 41 canales y te confirma los 12 core por defecto:
 - Blog WordPress (ES, EN, CA)
 - LinkedIn (ES, CA)
 - X/Twitter (ES/EN/CA)
@@ -91,7 +91,8 @@ Añade o quita lo que quieras. Recomendaciones:
 
 | Pregunta | Respuesta típica |
 |----------|------------------|
-| Web | zoopa.es (audiovisual/marketing) o 498as.com (AI/GEO) |
+| Web | zoopa.es (WordPress) o 498advance.com (blog estático, repo `498a-new-web-design`). Se pregunta siempre: cambia los outputs y la forma de publicar. `498as.com` ya solo redirige |
+| Canónico (solo 498advance.com) | Pieza nativa de 498A, o pieza derivada de carlosortet.com |
 | Autor | Carlos Ortet |
 | LinkedIn | ZOOPA / 498AS / Carlos personal |
 | Tema nuevo o existente | si existe, enlazar a posts previos |
@@ -113,7 +114,7 @@ La skill genera todos los outputs en `project_XXX/output/`:
 
 ### 8. Publicación en zoopa.es (PASO 5, opcional)
 
-Cuando me digas "publica en el blog", uso el publisher API REST:
+Cuando me digas "publica en el blog" y el destino sea **zoopa.es**, uso el publisher API REST:
 
 ```bash
 # Con env vars WP_USER y WP_APP_PASSWORD configuradas:
@@ -124,6 +125,27 @@ python3 _system/publisher/wp_publish.py \
 ```
 
 Luego registra automáticamente en `metadata.json`.
+
+Si el destino es **498advance.com**, el flujo es otro (no hay CMS): se escriben
+`blog498a_es.md` / `_ca` / `_en` / `_it`, se generan los HTML y los construye el repo de la web.
+
+```bash
+# 1 · ensayo, sin tocar el repo
+python3 ~/.claude/skills/content-factory/scripts/publisher/build_498a_post.py \
+  project_XXX/output/blog498a_es.md --dry-run
+
+# 2 · los cuatro idiomas y el constructor del blog (listados, sitemap, feeds, hreflang)
+python3 ~/.claude/skills/content-factory/scripts/publisher/build_498a_post.py \
+  project_XXX/output/blog498a_{es,ca,en,it}.md --build
+
+# 3 · validar
+python3 ~/.claude/skills/content-factory/scripts/validators/validate_blog_498a.py \
+  "/Users/carlos/Documents/claudecode-proj/design system 498A/498Adesign/blog/<slug>.html"
+```
+
+Antes de escribir una sola línea con ese destino, leer
+`references/blog-498advance-static.md`. Hay un ejemplo completo y validado en
+`examples/blog498a_es-pieza-derivada.md`.
 
 ### 9. Registrar publicaciones (cuando publiques en otros canales)
 
@@ -194,7 +216,7 @@ _system/
 
 `~/.claude/skills/content-factory/SKILL.md`
 
-Las referencias adicionales (catálogo de 35 canales, ortografía, lecciones aprendidas, componentes HTML para blogs) viven en `~/.claude/skills/content-factory/references/`.
+Las referencias adicionales (catálogo de 41 canales, ortografía, lecciones aprendidas, componentes HTML para blogs de WordPress y el blog estático de 498advance.com) viven en `~/.claude/skills/content-factory/references/`.
 
 ---
 
@@ -202,7 +224,7 @@ Las referencias adicionales (catálogo de 35 canales, ortografía, lecciones apr
 
 | Síntoma | Causa probable | Solución |
 |---------|----------------|----------|
-| `_system: No such file or directory` | No estás en `contentfactory/` | `cd /Users/cop/Documents/claudecode-proj/contentfactory` |
+| `_system: No such file or directory` | No estás en `contentfactory/` | `cd /Users/carlos/Documents/claudecode-proj/contentfactory` |
 | `validators no responden` | Hook no cargado al iniciar Claude | Reiniciar Claude Code en este directorio |
 | `WP_APP_PASSWORD not set` al publicar | Env var no exportada | Exportar `WP_USER` y `WP_APP_PASSWORD` antes de publicar |
 | `slug ya en uso` al publicar | Hay un post con ese slug | Cambiar slug en el bloque de metadatos del .md |

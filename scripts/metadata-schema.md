@@ -77,7 +77,8 @@ Es la unica fuente persistente de "que pasó con este contenido", y permite anal
 
 `<canal_base>_<idioma>`. Ejemplos:
 
-- `blog_es`, `blog_en`, `blog_ca`, `blog_facil_es`
+- `blog_es`, `blog_en`, `blog_ca`, `blog_facil_es` (blog WordPress de zoopa.es)
+- `blog498a_es`, `blog498a_ca`, `blog498a_en`, `blog498a_it` (blog estatico de 498advance.com)
 - `linkedin_es`, `linkedin_ca`
 - `whatsapp_grupo_es`, `whatsapp_grupo_ca`, `whatsapp_canal_es`, `whatsapp_canal_ca`
 - `substack_es`, `medium_en`, `devto_en`, `hashnode_en`, `hackernoon_en`
@@ -89,7 +90,7 @@ Es la unica fuente persistente de "que pasó con este contenido", y permite anal
 
 ## Campos por tipo de canal
 
-### Canales con WordPress (blog_*)
+### Canales con WordPress (blog_*, solo zoopa.es)
 
 | Campo | Obligatorio |
 |-------|-------------|
@@ -98,6 +99,17 @@ Es la unica fuente persistente de "que pasó con este contenido", y permite anal
 | `published_at` | si |
 | `categories` | si (IDs) |
 | `featured_media` | si (ID del attachment) |
+
+### Blog estatico de 498advance.com (blog498a_*)
+
+No hay CMS, asi que no hay `wp_post_id` ni `featured_media`.
+
+| Campo | Obligatorio |
+|-------|-------------|
+| `url` | si (`https://498advance.com{/lang}/blog/<slug>.html`) |
+| `published_at` | si |
+| `categories` | si (una de: Estudio, Metodo, Producto, Investigacion) |
+| `canonical` | si cuando apunta fuera (pieza derivada de carlosortet.com) |
 
 ### Canales web simples (linkedin, substack, medium, etc.)
 

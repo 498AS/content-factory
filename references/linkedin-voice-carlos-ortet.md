@@ -15,7 +15,7 @@
 4. TRES ACTORES / EJEMPLOS (3 párrafos cortos) — cada uno con dato monetario o cifra
 5. SÍNTESIS / DIAGNÓSTICO COMÚN (1 frase, NO declarativa-panfletaria)
 6. ANÉCDOTA AUTO-IRÓNICA DESDE LA TRINCHERA (1 párrafo) — cliente público con nombre + frase auto-burlona sobre humanos
-7. APUESTAS / BETS (3 bullets con em-dash) + DISCLAIMER HUMILDE entre paréntesis
+7. APUESTAS / BETS (3 bullets con guion corto, nunca em-dash) + DISCLAIMER HUMILDE entre paréntesis
 8. RESPUESTA / RECEIPTS (1 párrafo) — qué hacemos en 498A, números públicos seguros
 9. CIERRE BALANCEADO + PREGUNTA ABIERTA (3-4 frases) — matiz "soy pro-X pero..." + invitación a debate
 10. CTA AL BLOG: "Análisis completo en el blog: [link]"
@@ -86,16 +86,22 @@ Reforzar el wordplay del título capitalizando estratégicamente (ej. "bestIA" e
 
 Una frase corta y citable cerca del final. **Quitar el "He cambiado de opinión sobre algo:"** que la introducía — demasiado autorreferencial. La frase aforística sola es más fuerte.
 
-### Em-dashes "—" para asides + bullets
+### Asides y bullets: SIN em-dash
+
+> ⛔ **Regla vigente (decidida por Carlos, 15-ago-2026): cero em-dash (—) y cero en-dash (–) en cualquier output, también en LinkedIn.** Manda `orthography-rules.md` §3.1, que es la regla global y la más reciente. Esta sección autorizaba antes el em-dash para asides y bullets: queda derogada. Si encuentras esa autorización en algún sitio, es residuo.
+
+Los **asides** se resuelven con coma, paréntesis o punto y seguido:
 
 ✅ *"con AstraZeneca, en un estudio multimodal de datos clínicos, los modelos digieren formatos heterogéneos sin pestañear, **pero fallan al inferir relaciones causales.**"*
 
-✅ Bullets con em-dash, no asteriscos:
+Los **bullets** van con guion corto, que LinkedIn respeta igual y no delata:
 ```
-— Reinforcement learning en simulación (Silver, Sutton)
-— World models y joint embeddings (LeCun, JEPA)
-— Síntesis de programas tipo ARC-AGI (Chollet)
+- Reinforcement learning en simulación (Silver, Sutton)
+- World models y joint embeddings (LeCun, JEPA)
+- Síntesis de programas tipo ARC-AGI (Chollet)
 ```
+
+Verificación antes de entregar: `grep -c "—"` sobre el fichero debe dar **0**.
 
 ### Datos numéricos: cuáles publicar y cuáles no
 
@@ -211,7 +217,7 @@ Tono ligeramente más institucional:
 [ ] Balance "soy pro-X pero..." cerca del cierre
 [ ] Pregunta abierta concreta al final (antes del CTA)
 [ ] Aforismo memorable cerca del cierre
-[ ] Em-dashes "—" para asides y bullets
+[ ] CERO em-dash (—) y en-dash (–) en todo el texto · `grep -c "—"` = 0
 [ ] Cero clientes con NDA mencionados (ni anonimizados a nivel sector)
 [ ] Sólo datos públicos/seguros (no exponer métricas comprometidas como menciones por cliente)
 [ ] "autorregresivos" no "autoregresivos"
