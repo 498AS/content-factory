@@ -4,6 +4,12 @@
 
 > Ámbito: cuenta **personal** de Carlos Ortet. Para 498AS company page o ZOOPA company page el tono es ligeramente más institucional — ver fin del documento.
 
+> **Este fichero es la capa de VOZ, no la de estructura.** La estructura del argumento se elige
+> antes, en [linkedin-post-structures.md](linkedin-post-structures.md), que aplica a cualquier
+> presencia. La «Estructura validada» de abajo es el patrón **de voz** de esta cuenta: cómo suena
+> él, no cómo se arma el argumento. Las dos capas se componen, y si chocan manda la estructura
+> elegida (el orden de los bloques) y manda esta ficha (el registro, el léxico y los cierres).
+
 ---
 
 ## Estructura validada (~450-500 palabras)
@@ -209,7 +215,9 @@ Tono ligeramente más institucional:
 ## Checklist pre-publicación LinkedIn
 
 ```
+[ ] Estructura de linkedin-post-structures.md elegida ANTES de redactar, y declarada con su motivo
 [ ] Hook coloquial-irónico (no analítico-frío) en las primeras 2-3 frases
+[ ] El hook cabe en ~140 caracteres, y la primera línea no pasa de 8-10 palabras
 [ ] Conector hablado al menos en 2 puntos del texto
 [ ] Al menos 1 glosa parentética para audiencia mixta
 [ ] Al menos 1 frase de auto-ironía/humanización

@@ -33,10 +33,13 @@ Generar todos los outputs de contenido multicanal para un proyecto a partir de u
 | **Blog estático de 498advance.com (Perspectivas)** ⭐ | `~/.claude/skills/content-factory/references/blog-498advance-static.md` |
 | **Estructura del source.md (3-block brief)** ⭐ | `~/.claude/skills/content-factory/references/content-brief-structure.md` |
 | **Patrones editoriales (killer line, paradoja, "cuándo X suma")** ⭐ | `~/.claude/skills/content-factory/references/editorial-patterns.md` |
+| **Estructuras avanzadas de post de LinkedIn (cualquier presencia)** ⭐ | `~/.claude/skills/content-factory/references/linkedin-post-structures.md` |
 | **Voz LinkedIn · Carlos Ortet (cuenta personal)** ⭐ | `~/.claude/skills/content-factory/references/linkedin-voice-carlos-ortet.md` |
 | **Estilo Substack (email + permalink, no blog)** ⭐ | `~/.claude/skills/content-factory/references/substack-style.md` |
 | **Voz X/Twitter (humano, no LLM)** ⭐ | `~/.claude/skills/content-factory/references/x-twitter-voice-style.md` |
 | **Humanize Text · Anti-AI Detection Guide** ⭐ | `~/.claude/skills/content-factory/references/humanize-text-anti-ai.md` |
+
+`linkedin-post-structures.md` es OBLIGATORIO leer **antes de redactar cualquier post de LinkedIn, sea quien firme**. Trae cinco estructuras en las que la forma del post forma parte del argumento (la lista que se rompe, la nota al pie, anomalía-mecanismo-implicación, puzzle hook y matriz 2×2), con la regla de elegir una y declarar cuál. El esquema genérico de hook, re-hook y lista queda como último recurso: lo produce cualquier IA y no diferencia. Es capa de **plataforma**, así que aplica igual a la cuenta personal, a una Page de marca o a un portavoz del equipo; la **voz** de quien firma es otra capa y va aparte.
 
 ⭐ = nuevos en mayo 2026. `linkedin-voice-carlos-ortet.md` es OBLIGATORIO leer y aplicar antes de redactar `linkedin.md` o `linkedin_ca.md` cuando el autor sea Carlos Ortet (cuenta personal). Captura las correcciones reales que aplicó al post "La siguiente bestIA" (2026-05-10): hook coloquial-irónico, conectores hablados, glosa parentética para audiencia mixta, auto-ironía, balance "soy pro-X pero...", pregunta abierta final, política estricta de anonimización (clientes con NDA → eliminar caso, no anonimizar a nivel sectorial), y otros patrones documentados.
 
@@ -214,7 +217,8 @@ Tras verificar, contar palabras del source y guardarlas: `python3 _system/metada
 
 | Canal | Archivo de referencia | Cuándo se aplica |
 |---|---|---|
-| `linkedin.md` / `linkedin_ca.md` | `references/linkedin-voice-carlos-ortet.md` | Cuenta personal de Carlos Ortet (LinkedIn personal) |
+| `linkedin.md` / `linkedin_ca.md` | `references/linkedin-post-structures.md` | **Siempre, sea quien firme.** Elegir una de las cinco estructuras ANTES de redactar y declarar cuál y por qué |
+| `linkedin.md` / `linkedin_ca.md` | **+** `references/linkedin-voice-carlos-ortet.md` | Solo si firma la cuenta personal de Carlos Ortet. Es la capa de **voz**; la estructura del argumento viene del fichero anterior |
 | `substack_ready.txt` | `references/substack-style.md` | Siempre — Substack es email + permalink, no blog Wordpress condensado |
 | `x_twitter_ready.txt` / `threads_ready.txt` | `references/x-twitter-voice-style.md` | Siempre — X penaliza voz LLM, requiere cadencia humana asimétrica |
 | `blog.md` / `blog_en.md` / `blog_ca.md` | `references/blog-html-components.md` + `references/editorial-patterns.md` | Siempre — blog largo Wordpress con componentes HTML inline |
