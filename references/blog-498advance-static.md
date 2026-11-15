@@ -315,7 +315,7 @@ Confirmadas 2026-09-27 y aplicadas en la web en los cinco idiomas.
 |---|---|
 | Superficies medidas | **Siete**: ChatGPT · Claude · Gemini · Perplexity · Copilot · Google AI Overviews · Google AI Mode |
 | Volumen por estudio | **6.000-30.000** prompts personalizados |
-| Profundidad | Conversaciones de hasta **diez interacciones** |
+| Profundidad | Conversaciones simuladas, en producción, de hasta **diez interacciones** |
 | Estudios entregados | **+150** |
 | Marcas | **50+ marcas e instituciones** |
 | Prompts simulados | **1M+** acumulados · 540K+/mes |
@@ -331,6 +331,20 @@ Confirmadas 2026-09-27 y aplicadas en la web en los cinco idiomas.
 
 Las nueve verticales y sus KPIs propietarios estan en `~/.claude/CLAUDE.md`. El cheat
 sheet canonico de KPIs manda sobre cualquier otra fuente.
+
+---
+
+## 10 bis · Método y posicionamiento nuevos (noviembre de 2026)
+
+Cuatro capacidades que ya se pueden nombrar en el contenido. Salen del método de GEORadar
+y ninguna lleva cifras propias, así que no se inventa ninguna.
+
+| Tema | Qué se puede decir | Qué no se dice |
+|---|---|---|
+| **Conversaciones simuladas** | Están en producción. Un agente que lleva el perfil sintético del usuario genera cada pregunta a partir de la respuesta anterior de la IA, y un agente vigilante decide cuándo termina la conversación, con un tope de diez iteraciones. Complementan el estudio por cobertura y muestran cómo cambia la recomendación de una marca cuando el usuario concreta, compara o plantea objeciones | Que somos los únicos que lo hacen. Tampoco se citan KPIs de conversación con nombre propio: no hay canon publicado |
+| **Límite ético** | 498 Advance no acepta encargos para tapar información cierta, evitar que la IA diga algo verdadero ni difundir información falsa. El reposicionamiento se hace a favor de la transparencia y del derecho a estar informado | Qué encargos se han rechazado ni quién los pidió |
+| **Partidos medidos como marcas** | El mismo marco de marcas e instituciones se aplica a partidos y candidatos: cuota de voz de marca (SBOV), posición (PS), sentimiento (SS) y atributos asociados, exactitud de las afirmaciones, aceptación o corrección de las premisas de la pregunta, y variación por perfil y por fuente | Resultados, perfiles, calendario o modelos de un estudio electoral concreto antes de que se publique |
+| **Decision triggers** | Grupos de KPIs nuevos: los temas, argumentos o fuentes que hacen que la IA pase de informar a recomendar. *Purchase triggers* en consumo, *affiliation triggers* en entornos institucionales y *vote triggers* en política. Se buscan en el turno de la conversación simulada en que cambia el tono | Acrónimo, fórmula, umbrales o valores numéricos: todavía no existen |
 
 ---
 
